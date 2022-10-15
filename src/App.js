@@ -22,7 +22,7 @@ const Diagram = () => {
 }
 
 function App() {
-  const ROUTER_BASENAME = "/C_2212"
+  const ROUTER_BASENAME = process.env.NODE_ENV ==="development" ? "/C_2212" : "/"
 
   return (
     <Router basename={ROUTER_BASENAME}>
