@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"
 import React from 'react';
 
 const Home = () => {
@@ -22,14 +22,20 @@ const Diagram = () => {
 }
 
 function App() {
-  const ROUTER_BASENAME = "/C_2212"
+  const ROUTER_BASENAME = 
+    process.env.NODE_ENV === "development" ? "/" : "/C_2212"
 
   return (
-    <Router>
+    <Router basename={ROUTER_BASENAME}>
+      <Link to="/" >home</Link>
+      <br></br>
+      <Link to="/calendar" >calendar</Link>
+      <br></br>
+      <Link to="/diagram" >diagram</Link>
       <Routes>
-        <Route path={`${ROUTER_BASENAME}/`} exact={true} element={<Home/>}/>
-        <Route path={`${ROUTER_BASENAME}/calendar`} element={<Calendar/>}/>
-        <Route path={`${ROUTER_BASENAME}/diagram`} element={<Diagram/>}/>
+        <Route path="/" exact={true} element={<Home/>}/>
+        <Route path="/calendar" element={<Calendar/>}/>
+        <Route path="/diagram" element={<Diagram/>}/>
       </Routes> 
     </Router>
   );
