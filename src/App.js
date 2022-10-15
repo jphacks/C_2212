@@ -22,8 +22,11 @@ const Diagram = () => {
 }
 
 function App() {
+  const ROUTER_BASENAME = 
+    process.env.NODE_ENV === "development" ? "/" : "C_2212"
+
   return (
-    <Router>
+    <Router basename={ROUTER_BASENAME}>
       <Routes>
         <Route index element={<Home/>}/>
         <Route path="calendar/" element={<Calendar/>} />
