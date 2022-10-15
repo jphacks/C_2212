@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import React from 'react';
 
 const Home = () => {
@@ -22,9 +22,7 @@ const Diagram = () => {
 }
 
 function App() {
-  const ROUTER_BASENAME = 
-    process.env.NODE_ENV === "development" ? "/" : "/C_2212"
-  console.log(ROUTER_BASENAME)
+  const ROUTER_BASENAME = "/C_2212"
 
   return (
     <Router basename={ROUTER_BASENAME}>
