@@ -25,9 +25,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="C_2212/" element={<Home/>}/>
-        <Route path="C_2212/calendar/" element={<Calendar/>} />
-        <Route path="C_2212/diagram/" element={<Diagram/>} />
+        <Route index element={<Home/>}/>
+        <Route path="calendar/" element={<Calendar/>} />
+        <Route path="diagram/" element={<Diagram/>} />
       </Routes>
     </Router>
   );
