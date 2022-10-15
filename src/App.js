@@ -3,23 +3,10 @@ import './App.css';
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom"
 import React from 'react';
 
-const Home = () => {
-  return (
-    <p>this is <b>Home</b> page.</p>
-  )
-}
+import Home from "./pages/home"
+import Calendar from "./pages/calendar"
+import Diagram from "./pages/diagram"
 
-const Calendar = () => {
-  return (
-    <p>this is <b>Calendar</b> page.</p>
-  )
-}
-
-const Diagram = () => {
-  return (
-    <p>this is <b>Diagram</b> page</p>
-  )
-}
 
 function App() {
   const ROUTER_BASENAME = "/C_2212"
