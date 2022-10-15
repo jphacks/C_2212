@@ -26,8 +26,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="C_2212/" element={<Home/>}/>
-        <Route path="C_2212/calendar" element={<Calendar/>} />
-        <Route path="C_2212/diagram" element={<Diagram/>} />
+        <Route path="C_2212/calendar/" element={<Calendar/>} />
+        <Route path="C_2212/diagram/" element={<Diagram/>} />
       </Routes>
     </Router>
   );
