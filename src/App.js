@@ -25,11 +25,11 @@ function App() {
   const ROUTER_BASENAME = "/C_2212"
 
   return (
-    <Router basename={ROUTER_BASENAME}>
+    <Router>
       <Routes>
-        <Route path="/" exact={true} element={<Home/>}/>
-        <Route path="/calendar" element={<Calendar/>}/>
-        <Route path="/diagram" element={<Diagram/>}/>
+        <Route path={`${ROUTER_BASENAME}/`} exact={true} element={<Home/>}/>
+        <Route path={`${ROUTER_BASENAME}/calendar`} element={<Calendar/>}/>
+        <Route path={`${ROUTER_BASENAME}/diagram`} element={<Diagram/>}/>
       </Routes> 
     </Router>
   );
