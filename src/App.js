@@ -28,11 +28,6 @@ function App() {
 
   return (
     <Router basename={ROUTER_BASENAME}>
-      <Link to="/" >home</Link>
-      <br></br>
-      <Link to="/calendar" >calendar</Link>
-      <br></br>
-      <Link to="/diagram" >diagram</Link>
       <Routes>
         <Route path="/" exact={true} element={<Home/>}/>
         <Route path="/calendar" element={<Calendar/>}/>
