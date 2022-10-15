@@ -28,10 +28,10 @@ function App() {
   return (
     <Router basename={ROUTER_BASENAME}>
       <Routes>
-        <Route index element={<Home/>}/>
-        <Route path="calendar/" element={<Calendar/>} />
-        <Route path="diagram/" element={<Diagram/>} />
-      </Routes>
+        <Route path="/" exact={true} element={<Home/>}/>
+        <Route path="/calendar" element={<Calendar/>}/>
+        <Route path="/diagram" element={<Diagram/>}/>
+      </Routes> 
     </Router>
   );
 }
