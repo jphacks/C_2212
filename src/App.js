@@ -6,7 +6,7 @@ import React from 'react';
 import Home from "./pages/home"
 import Calendar from "./pages/calendar"
 import Diagram from "./pages/diagram"
-import todolist from "./pages/todolist"
+import Todolist from "./pages/todolist"
 
 function App() {
   const ROUTER_BASENAME = "/C_2212"
@@ -25,7 +25,7 @@ function App() {
         <Route path="/" exact={true} element={<Home/>}/>
         <Route path="/calendar" element={<Calendar/>}/>
         <Route path="/diagram" element={<Diagram/>}/>
-        <Route path="/todolist" element={<todolist/>}/>
+        <Route path="/todolist" element={<Todolist/>}/>
       </Routes> 
     </Router>
   );

@@ -1,10 +1,10 @@
 import React from "react"
 
 
-const todolist = () => {
+const Todolist = () => {
 	return (
 	  <p>this is <b>todolist</b> page.</p>
 	)
 }
 
-export default todolist;
+export default Todolist;
