@@ -1,8 +1,13 @@
+/*
+	Widgetクラスでは、
+		・UI
+	を定義する
+*/
+
+
 import { DiagramEngine, PortWidget } from "@projectstorm/react-diagrams";
 import React from "react";
 import { TaskNodeModel } from "./model";
-
-
 
 export interface TaskNodeWidgetProps {
 	node: TaskNodeModel;

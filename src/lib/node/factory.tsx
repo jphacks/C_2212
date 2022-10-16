@@ -1,3 +1,10 @@
+/*
+	Factoryクラスでは、
+		・ModelとWidgetの紐付け
+	を定義する
+*/
+
+
 import { DiagramEngine } from "@projectstorm/react-diagrams";
 import { TaskNodeModel } from "./model";
 

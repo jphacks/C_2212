@@ -1,8 +1,12 @@
+/*
+	Factoryクラスでは、
+		・ModelとWidgetの紐付け
+	を定義する
+*/
+
 import { DefaultLinkFactory } from "@projectstorm/react-diagrams";
 import React from "react";
 import { AdvancedLinkModel } from "./model";
-
-
 
 
 export class AdvancedLinkSegment extends React.Component<{ model: AdvancedLinkModel; path: string }> {
