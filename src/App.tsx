@@ -20,7 +20,7 @@ function App() {
       <Link to="/diagram">diagram</Link>
       <br></br>
       <Routes>
-        <Route path="/" exact={true} element={<Home/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/calendar" element={<Calendar/>}/>
         <Route path="/diagram" element={<Diagram/>}/>
       </Routes> 
