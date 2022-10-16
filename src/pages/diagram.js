@@ -1,5 +1,6 @@
 import React from "react"
 
+
 const Diagram = () => {
 	// Diagram page
 	return (
