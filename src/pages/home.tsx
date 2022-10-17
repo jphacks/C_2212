@@ -1,38 +1,55 @@
-import React from "react"
+import React, { useState } from "react"
+import { Link } from "react-router-dom";
+import "./home.css"
+
+const sample_contents_ls_html = [
+	"shakou", "math_exam", "TOEIC"
+];
 
 
+const TaskNavList = ({show}: {show: Boolean}) => {
+
+	const style = {
+		disply: "none"
+	}
+	if (show) style.disply = "block";
+
+	return (
+		<>
+			{sample_contents_ls_html.map((clh) => {
+				return ( 
+					<div style={{display: style.disply}} key={clh}>
+						<Link to={`/tasks?=${clh}`}>{clh}</Link>
+					</div>
+					)
+				})
+			}
+		</>
+	)
+}
 
 const Home = () => {
-	let url_dict = {'車校':'http://schedule&target="車校"'}	//dict comprise {content:url} 
-	const contents_ls_html = []
-	for(let content in url_dict){
-		contents_ls_html.push(<a align='right' href={url_dict[content]} key={url_dict[content]}>{content}</a>)
+
+
+	const [isShowDropDown, setIsShowDropDown] = useState<Boolean>(false);
+
+	const hDorpDown = () => {
+		console.log(isShowDropDown)
+		setIsShowDropDown(prev => !prev);
 	}
+	
 	return (
 	  <div>
 		  <div id='menu_bar'>
 			  junsche
-			  <button className='drop_down' onClick={() => {document.getElementById("contents_ls").classList.toggle("show");}}>チャート一覧</button>
+			  <button className='drop_down' onClick={hDorpDown}>チャート一覧</button>
 		  </div>
-		  <div id='contents_ls' className='contents_ls'>
-					{contents_ls_html}
+		  <div>
+		  	<TaskNavList show={isShowDropDown}/>
 		  </div>
 	  </div>
 	)
 }
-
-window.onclick = function(event) {
-	if (!event.target.matches('.drop_down')) {
-	  var dropdowns = document.getElementsByClassName("contents_ls");
-	  var i;
-	  for (i = 0; i < dropdowns.length; i++) {
-		var openDropdown = dropdowns[i];
-		if (openDropdown.classList.contains('show')) {
-		  openDropdown.classList.remove('show');
-		}
-	  }
-	}
-  }
 
 
 export default Home;

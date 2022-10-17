@@ -1,0 +1,13 @@
+
+#menu_bar {
+	background-color: darkgray;
+	overflow : hidden;
+	border: none;
+	cursor: pointer;
+}
+
+.drop_down {
+	position: relative; 
+	/* margin-left: 1180px; */
+	display: inline-block;
+}
