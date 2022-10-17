@@ -1,0 +1,101 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FFEDDA;
+}
+  
+/* UI関連 */
+.page-tree {
+    text-align: left;
+    font-size: 25px;
+    font-weight: 100;
+    color: #ffb830;
+    margin: 10px 0;
+}
+  
+.page-title {
+    text-align: left;
+    font-size: 56px;
+    font-weight: 100;
+    color: #ffb830;
+    padding-left: 50px;
+    margin: 0;
+}
+  
+/* チャート一覧関連 */
+.chart-page {
+    width: 1200px;
+    vertical-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+}
+  
+.chart-container {
+    width: 100%;
+}
+    
+.chart-card {
+    display: inline-block;
+    cursor: pointer;
+    width: 300px;
+    height: 200px;
+    padding: 0;
+    margin: 20px;
+    background-color: #fffcf9;
+    outline: 2px solid #ffb830;
+    outline-offset: -2px;
+    position: relative;
+}
+  
+.chart-card:hover {
+    background-color: #f0f8ff;
+    outline: 4px solid #ffb830;
+    outline-offset: -4px;
+}
+  
+.chart-name {
+    text-align: left;
+    vertical-align: top;
+    width: 40%;
+    height: 20%;
+    background-color: #ff4d75;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.chart-name-text {
+    color: #ffffff;
+}
+  
+.chart-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+  
+.chart-pageprev {
+    position: absolute;
+    top: 48%;
+    left: 3%;
+    transition: 0.2s;
+}
+  
+.chart-pagenext {
+    position: absolute;
+    top: 48%;
+    left: 95%;
+    transition: 0.2s;
+}
+  
+.chart-pagenext img, .chart-pageprev img {
+    height: 150px;
+}
+  
+.chart-pagenext:hover, .chart-pageprev:hover {
+    transform: scale(1.3, 1.3);
+}

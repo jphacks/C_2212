@@ -22,7 +22,7 @@ function App() {
       <Link to="/todolist">todolist</Link>
       <br></br>
       <Routes>
-        <Route path="/" exact={true} element={<Home/>}/>
+        <Route path="/" element={<Home/>}/>
         <Route path="/calendar" element={<Calendar/>}/>
         <Route path="/diagram" element={<Diagram/>}/>
         <Route path="/todolist" element={<Todolist/>}/>
