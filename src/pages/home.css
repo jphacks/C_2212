@@ -1,31 +1,35 @@
 
 #menu_bar {
-	background-color: darkgray;
-	overflow : hidden;
 	border: none;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	background-color: darkgray;
+}
+
+.container {
 	padding: 10px 0;
+	position: relative;
+	flex-grow: 1;
+	text-align: left;
+	margin-right: 2%;
+}
+
+.drop_down {
+	text-align: right;
 }
 
 .web-title {
 	flex-grow: 1;
 	margin-left: 2%;
 }
-.drop_down {
-	/*position: relative; 
-	margin-left: 1180px;
-	display: inline-block;*/
-	flex-grow: 1;
-	text-align: right;
-	margin-right: 2%;
+
+.temp {
+	position: absolute;
+	top : 100%;
+	left: 85%;
 }
 
 .chart-list {
 	margin-right: 2%;
-}
-
-.chart-link {
-	text-align: middle;
 }

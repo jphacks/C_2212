@@ -18,7 +18,7 @@ const TaskNavList = ({show}: {show: Boolean}) => {
 		<div className='chart-list'>
 			{sample_contents_ls_html.map((clh) => {
 				return ( 
-					<div className='chart-link' style={{display: style.disply}} key={clh}>
+					<div style={{display: style.disply}} key={clh}>
 						<Link to={`/tasks?=${clh}`}>{clh}</Link>
 					</div>
 					)
@@ -39,19 +39,19 @@ const Home = () => {
 	}
 	
 	return (
-	  <div>
-		  <div id='menu_bar'>
-				<div className='web-title'>
-			  		junsche
-			  	</div>
-			  	<div className='drop_down'>
+		<div id='menu_bar'>
+			<div className='web-title'>
+			  	junsche
+			</div>
+			<div className="container">
+				<div className='drop_down'>
 					<button onClick={hDorpDown}>チャート一覧</button>
-			  	</div>
-		  </div>
-		  <div>
-		  	<TaskNavList show={isShowDropDown}/>
-		  </div>
-	  </div>
+				</div>
+				<div className="temp">
+					<TaskNavList show={isShowDropDown}/>
+				</div>
+			</div>
+		</div>
 	)
 }
 
