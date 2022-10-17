@@ -5,10 +5,14 @@
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
-    "@projectstorm/react-diagrams": "^6.7.2-alpha.0",
+    "@projectstorm/react-diagrams": "^6.7.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.66",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "closest": "^0.0.1",
     "dagre": "^0.8.5",
     "lodash": "^4.17.21",
@@ -19,6 +23,7 @@
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
     "resize-observer-polyfill": "^1.5.1",
+    "typescript": "^4.8.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
