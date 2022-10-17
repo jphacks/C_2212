@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #FFEDDA;
+    background-color: #FFFBE0;
 }
   
 /* UI関連 */
@@ -44,15 +44,12 @@ body {
     padding: 0;
     margin: 20px;
     background-color: #fffcf9;
-    outline: 2px solid #ffb830;
-    outline-offset: -2px;
+    border-radius: 5px;
     position: relative;
 }
   
 .chart-card:hover {
     background-color: #f0f8ff;
-    outline: 4px solid #ffb830;
-    outline-offset: -4px;
 }
   
 .chart-name {
@@ -60,10 +57,10 @@ body {
     vertical-align: top;
     width: 40%;
     height: 20%;
-    background-color: #ff4d75;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px 0 0 0;
 }
   
 .chart-name-text {

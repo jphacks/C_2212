@@ -1,7 +1,7 @@
 import React from "react";
 import pagenextPrev from "../images/pageprev.png";
 import pagenextImg from "../images/pagenext.png";
-import "./todolist.css"
+import "./todolist.css";
 
 // チャートページのクラス
 class Todolist extends React.Component {
@@ -74,7 +74,7 @@ class Todolist extends React.Component {
         } else if (chartsCount % 6 > 0) {
 
             // 最終ページには灰色のチャートを作成
-            for (var i = 0; i < 6 - chartsCount % 6; i++) {
+            for (let i = 0; i < 6 - chartsCount % 6; i++) {
                 chartList.push({
                     name: "未作成",
                     color: "#bdbdbd"
@@ -83,7 +83,6 @@ class Todolist extends React.Component {
 
         }
         const displayCharts = chartList.slice(currentPageNum * 6, currentPageNum * 6 + 6);
-        console.log(currentPageNum);
 
         // 一覧を表示
         return (
