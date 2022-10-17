@@ -1,12 +1,12 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./home.css"
+import "./home.css";
 
 const sample_contents_ls_html = [
 	"shakou", "math_exam", "TOEIC"
 ];
 
-
+// コンポーネント
 const TaskNavList = ({show}: {show: Boolean}) => {
 
 	const style = {
@@ -15,16 +15,16 @@ const TaskNavList = ({show}: {show: Boolean}) => {
 	if (show) style.disply = "block";
 
 	return (
-		<>
+		<div className='chart-list'>
 			{sample_contents_ls_html.map((clh) => {
 				return ( 
-					<div style={{display: style.disply}} key={clh}>
+					<div className='chart-link' style={{display: style.disply}} key={clh}>
 						<Link to={`/tasks?=${clh}`}>{clh}</Link>
 					</div>
 					)
 				})
 			}
-		</>
+		</div>
 	)
 }
 
@@ -41,8 +41,12 @@ const Home = () => {
 	return (
 	  <div>
 		  <div id='menu_bar'>
-			  junsche
-			  <button className='drop_down' onClick={hDorpDown}>チャート一覧</button>
+				<div className='web-title'>
+			  		junsche
+			  	</div>
+			  	<div className='drop_down'>
+					<button onClick={hDorpDown}>チャート一覧</button>
+			  	</div>
 		  </div>
 		  <div>
 		  	<TaskNavList show={isShowDropDown}/>
