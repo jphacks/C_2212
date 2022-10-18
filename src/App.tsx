@@ -17,13 +17,7 @@ function App() {
   return (
     <Router basename={ROUTER_BASENAME}>
       <Navbar />
-      <Link to="/">home</Link>
-      <br></br>
-      <Link to="/calendar">calendar</Link>
-      <br></br>
       <Link to="/diagram">diagram</Link>
-      <br></br>
-      <Link to="/todolist">todolist</Link>
       <br></br>
       <Routes>
         <Route path="/" element={<Home/>}/>
