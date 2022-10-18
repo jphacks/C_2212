@@ -4,16 +4,17 @@
 	を定義する
 */
 
-import { DiagramEngine } from "@projectstorm/react-diagrams";
+import { DefaultPortFactory, DiagramEngine } from "@projectstorm/react-diagrams";
 import { AdvancedPortModel } from "./model";
-import { AbstractReactFactory, GenerateWidgetEvent } from "@projectstorm/react-canvas-core"
+import { GenerateWidgetEvent } from "@projectstorm/react-canvas-core"
 import { AdvancedPortWidget } from "./widget";
 
 
-export class AdvancedPortFactory extends AbstractReactFactory<AdvancedPortModel, DiagramEngine> {
+export class AdvancedPortFactory extends DefaultPortFactory {
 
+	// eslint-disable-next-line @typescript-eslint/no-useless-constructor
 	constructor() {
-		super("advanced");
+		super();
 	}
 
 	generateModel(): AdvancedPortModel {

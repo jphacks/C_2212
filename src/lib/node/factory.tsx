@@ -12,16 +12,6 @@ import { TaskNodeModel } from "./model";
 import { TaskNodeWidget } from "./widget";
 import { AbstractReactFactory } from "@projectstorm/react-canvas-core"
 
-// export interface GenerateWidgetEvent<T extends BaseModel> {
-// 	model: T;
-// }
-
-// export abstract class AbstractReactFactory<
-// 	T extends BaseModel = BaseModel,
-// 	E extends CanvasEngine = CanvasEngine
-// > extends AbstractModelFactory<T, E> {
-// 	abstract generateReactWidget(event: GenerateWidgetEvent<T>): JSX.Element
-// }
 
 export class TaskNodeFactory extends AbstractReactFactory<TaskNodeModel, DiagramEngine> {
 	constructor() {

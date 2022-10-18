@@ -4,10 +4,9 @@
 	を定義する
 */
 
-import { DefaultLinkFactory, DiagramEngine } from "@projectstorm/react-diagrams";
+import { DiagramEngine, DefaultLinkFactory } from "@projectstorm/react-diagrams";
 import { AdvancedLinkModel} from "./model";
-import { AdvancedLinkSegment } from "./widget";
-
+import { AdvancedLinkWiget } from "./widget";
 
 export class AdvancedLinkFactory extends DefaultLinkFactory {
 	constructor() {
@@ -18,11 +17,9 @@ export class AdvancedLinkFactory extends DefaultLinkFactory {
 		return new AdvancedLinkModel();
 	}
 
-	generateLinkSegment(model: AdvancedLinkModel, selected: boolean, path: string) {
-		return (
-			<g>
-				<AdvancedLinkSegment engine={this.engine as DiagramEngine} node={model} path={path} />
-			</g>
-		);
+
+	generateReactWidget(event: any): JSX.Element {
+		return <AdvancedLinkWiget diagramEngine={this.engine as DiagramEngine} link={event.model} />
 	}
+
 }

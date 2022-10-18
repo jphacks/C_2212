@@ -27,8 +27,7 @@ export class AdvancedPortWidget extends React.Component<
 
 	render() {
 		return (
-			<>
-			</>
+			super.render()
 		)
 	}
 }

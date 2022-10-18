@@ -7,6 +7,7 @@
 
 import { DefaultLinkModel } from "@projectstorm/react-diagrams";
 
+
 export class AdvancedLinkModel extends DefaultLinkModel {
 	constructor() {
 		super({
