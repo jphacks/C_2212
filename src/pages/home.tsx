@@ -7,8 +7,10 @@ import "./home.css";
 const Home = () => {
 	
 	return (
-		// <Navbar />
-		<></>
+		<>
+			<p>this is <b>Home</b> page</p>
+			<p>ホームページ（ミニマムじゃないよ）</p>
+		</>
 	)
 }
 

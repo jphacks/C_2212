@@ -36,24 +36,25 @@ const Navbar = () => {
 
   return (
     <nav className="navigation">
-      <a href="/" className="brand-name">
+      <Link to="/" className="brand-name">
         JunSche
-      </a>
+      </Link>
       <div className="navigation-menu">
         <ul>
           <li>
-            <a href="/home">Home</a>
+            <Link to="/today-tasks">
+              Today
+            </Link>
           </li>
           <li>
-            <a href="/about">About</a>
-          </li>
-          <li>
-            <a href="/contact">Contact</a>
+            <Link to="/calendar">
+              Calendar
+            </Link>
           </li>
         </ul>
       </div>
       <div className="navigation-tasks">
-        <div>Tasks</div>
+        <Link to="/todolist" className="navogation-task-title">Tasks</Link>
         <NavTaskList tasks={sample_tasks} />
       </div>
     </nav>
