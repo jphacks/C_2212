@@ -10,6 +10,12 @@ import { BaseModelOptions } from "@projectstorm/react-canvas-core";
 import { NodeModel, DefaultPortModel } from "@projectstorm/react-diagrams"
 
 
+export interface TaskNodeModelOptions extends BaseModelOptions {
+	name?: string
+	scheduledWorkDays?: number
+	progress?: number
+}
+
 export class TaskNodeModel extends NodeModel {
 	// クラスにプロパティとして定義
 	name: string   
@@ -19,7 +25,7 @@ export class TaskNodeModel extends NodeModel {
 	constructor(options: TaskNodeModelOptions = {}) {
 		super({
 			...options,
-			type: 'default'
+			type: 'advanced'
 		});
 
 	// 初期化
@@ -68,10 +74,4 @@ export class TaskNodeModel extends NodeModel {
 		this.scheduledWorkDays = event.data.scheduledWorkDays || 1;
 		this.progress = event.data.progress || 0;
 	}
-}
-
-export interface TaskNodeModelOptions extends BaseModelOptions {
-	name?: string
-	scheduledWorkDays?: number
-	progress?: number
 }

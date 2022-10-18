@@ -13,6 +13,7 @@ const Diagram = () => {
 	var engine = createEngine();
 	engine.getLinkFactories().registerFactory(new AdvancedLinkFactory());
 	engine.getNodeFactories().registerFactory(new TaskNodeFactory());
+	engine.getPortFactories().registerFactory(new AdcancedPortFactory());
 
 	const model = new DiagramModel();
 
