@@ -1,11 +1,8 @@
 // Navbar.js
 
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css"
-
-
 
 const sample_tasks = [
   "shakou", "TOEIC", "ababa"
@@ -27,12 +24,6 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
 };
 
 const Navbar = () => {
-
-  // const [isExpand, setIsExpand] = useState<Boolean>(false);
-
-  // const hExpandButton = () => {
-  //   setIsExpand(prev => !prev);
-  // }
 
   return (
     <nav className="navigation">
