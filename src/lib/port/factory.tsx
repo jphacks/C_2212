@@ -4,7 +4,7 @@
 	を定義する
 */
 
-import { DefaultPortFactory, DiagramEngine } from "@projectstorm/react-diagrams";
+import { DiagramEngine } from "@projectstorm/react-diagrams";
 import { AdvancedPortModel } from "./model";
 import { AbstractReactFactory, GenerateWidgetEvent } from "@projectstorm/react-canvas-core"
 import { AdvancedPortWidget } from "./widget";

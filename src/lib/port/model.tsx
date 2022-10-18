@@ -1,4 +1,4 @@
-import { PortModel, PortModelOptions } from "@projectstorm/react-diagrams";
+import { PortModel } from "@projectstorm/react-diagrams";
 import { AdvancedLinkModel } from "../link/model";
 import { DeserializeEvent, BaseModelOptions } from "@projectstorm/react-canvas-core";
 

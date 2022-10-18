@@ -6,6 +6,7 @@ import { TaskNodeFactory } from '../lib/node/factory';
 import { TaskNodeModel } from '../lib/node/model';
 import { AdvancedLinkModel } from '../lib/link/model';
 import { AdvancedLinkFactory } from '../lib/link/factory';
+import { AdvancedPortFactory } from '../lib/port/factory';
 
 
 const Diagram = () => {
@@ -13,7 +14,7 @@ const Diagram = () => {
 	var engine = createEngine();
 	engine.getLinkFactories().registerFactory(new AdvancedLinkFactory());
 	engine.getNodeFactories().registerFactory(new TaskNodeFactory());
-	engine.getPortFactories().registerFactory(new AdcancedPortFactory());
+	engine.getPortFactories().registerFactory(new AdvancedPortFactory());
 
 	const model = new DiagramModel();
 
