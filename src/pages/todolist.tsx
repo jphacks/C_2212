@@ -2,7 +2,6 @@ import React from "react";
 import pagenextPrev from "../images/pageprev.png";
 import pagenextImg from "../images/pagenext.png";
 import "./todolist.css";
-import  "../plus.svg";
 
 // チャートページのクラス
 class Todolist extends React.Component {
@@ -80,14 +79,15 @@ class Todolist extends React.Component {
         if (currentPageNum * 6 + 6 < chartsCount) {
             pagenext = (<div className='chart-pagenext'><img src={pagenextImg} alt="nextpage" onClick={() => this.nextPageChange(currentPageNum)} /></div>);
         } else if (chartsCount % 6 > 0) {
-                // 最終ページには灰色のチャートを作成
-                for (let i = 0; i < 6 - chartsCount % 6; i++) {
-                    chartList.push({
-                        name: "未作成",
-                        color: "#bdbdbd",
-                        newFlag: true
-                    });
-                }
+
+            // 最終ページには灰色のチャートを作成
+            for (let i = 0; i < 6 - chartsCount % 6; i++) {
+                chartList.push({
+                    name: "未作成",
+                    color: "#bdbdbd",
+                    newFlag: true
+                });
+            }
 
         }
         const displayCharts = chartList.slice(currentPageNum * 6, currentPageNum * 6 + 6);
@@ -99,7 +99,7 @@ class Todolist extends React.Component {
             <h1 className='page-title'>チャート一覧</h1>
                 <div className='chart-container'>
                 {displayCharts.map((chartItem, index) => {
-                    if(chartItem.newFlag === false){
+                    if (chartItem.newFlag === false) {
                         return (
                             <div className='chart-card' key={'chart-card' + index}>
                                 <div className='chart-name' style={{backgroundColor: chartItem.color}} key={'chart-name' + index}>
@@ -110,28 +110,41 @@ class Todolist extends React.Component {
                                 </div>
                             </div>
                         );
-
-                    } else{
+                    } else {
                         return (
-                            <div className='chart-card'>
-                                <div className='chart-content' key={'chart-content' + index}>
-                                    
+                            <div className='chart-card' style={{backgroundColor: '#FBE5B2'}} key={'chart-card' + index}>
+                                <div className='chart-create-text' key={'chart-create-text' + index}>
+                                    新規作成
                                 </div>
-                            </div> 
+                                <div className='chart-content' key={'chart-content' + index}>
+                                    ＋
+                                </div>
+                            </div>
                         );
                     }
-                    
-                        
-                   
-                   
                 })}
                 </div>
             {pageprev}
             {pagenext}
-            
+            {}
             </div>
         );
     }
 }
 
 export default Todolist;
+
+/*
+<div className='chart-card' key={'chart-card' + index}>
+<div className='chart-name' style={{backgroundColor: chartItem.color}} key={'chart-name' + index}>
+    名前です
+</div>
+<div className='chart-content' key={'chart-content' + index}>
+    {chartItem.content}
+</div>
+</div>
+*/
+
+/*
+
+*/
