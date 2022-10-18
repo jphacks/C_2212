@@ -7,10 +7,10 @@ import "./home.css";
 const Home = () => {
 	
 	return (
-		<>
+		<div>
 			<p>this is <b>Home</b> page</p>
 			<p>ホームページ（ミニマムじゃないよ）</p>
-		</>
+		</div>
 	)
 }
 
