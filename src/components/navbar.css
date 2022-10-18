@@ -65,6 +65,7 @@ ul.dropdown-lists {
     width: inherit;
     position: absolute;
     top: 60px;
+    z-index: 1;
 }
 
 
