@@ -66,6 +66,17 @@ body {
 .chart-name-text {
     color: #ffffff;
 }
+
+.chart-create-text {
+    text-align: middle;
+    font-weight: bold;
+    vertical-align: top;
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   
 .chart-content {
     position: absolute;

@@ -31,33 +31,40 @@ class Todolist extends React.Component {
             {
                 name: "車校①",
                 color: "#ff2442",
-                content: "テスト1"
+                content: "テスト1",
+                newFlag: false
             },
             {
                 name: "車校②",
                 color: "#ffb01a",
-                content: "あいあいあい"
+                content: "あいあいあい",
+                newFlag: false
             },
             {
                 name: "テス勉",
                 color: "#3db2ff",
-                content: "コンテンツのテスト"
+                content: "コンテンツのテスト",
+                newFlag: false
             },
             {
                 name: "部活動",
-                color: "#ffb01a"
+                color: "#ffb01a",
+                newFlag: false
             },
             {
                 name: "旅行",
-                color: "#3db2ff"
+                color: "#3db2ff",
+                newFlag: false
             },
             {
                 name: "旅行②",
-                color: "#ff2442"
+                color: "#ff2442",
+                newFlag: false
             },
             {
                 name: "旅行③",
-                color: "#ff2466"
+                color: "#ff2466",
+                newFlag: false
             }
         ];
         const chartsCount = chartList.length;
@@ -77,7 +84,8 @@ class Todolist extends React.Component {
             for (let i = 0; i < 6 - chartsCount % 6; i++) {
                 chartList.push({
                     name: "未作成",
-                    color: "#bdbdbd"
+                    color: "#bdbdbd",
+                    newFlag: true
                 });
             }
 
@@ -91,23 +99,52 @@ class Todolist extends React.Component {
             <h1 className='page-title'>チャート一覧</h1>
                 <div className='chart-container'>
                 {displayCharts.map((chartItem, index) => {
-                    return (
-                        <div className='chart-card' key={'chart-card' + index}>
-                            <div className='chart-name' style={{backgroundColor: chartItem.color}} key={'chart-name' + index}>
-                                <div className='chart-name-text' key={'chart-name-text' + index}>{chartItem.name}</div>
+                    if (chartItem.newFlag === false) {
+                        return (
+                            <div className='chart-card' key={'chart-card' + index}>
+                                <div className='chart-name' style={{backgroundColor: chartItem.color}} key={'chart-name' + index}>
+                                    <div className='chart-name-text' key={'chart-name-text' + index}>{chartItem.name}</div>
+                                </div>
+                                <div className='chart-content' key={'chart-content' + index}>
+                                    {chartItem.content}
+                                </div>
                             </div>
-                            <div className='chart-content' key={'chart-content' + index}>
-                                {chartItem.content}
+                        );
+                    } else {
+                        return (
+                            <div className='chart-card' style={{backgroundColor: '#FBE5B2'}} key={'chart-card' + index}>
+                                <div className='chart-create-text' key={'chart-create-text' + index}>
+                                    新規作成
+                                </div>
+                                <div className='chart-content' key={'chart-content' + index}>
+                                    ＋
+                                </div>
                             </div>
-                        </div>
-                    );
+                        );
+                    }
                 })}
                 </div>
             {pageprev}
             {pagenext}
+            {}
             </div>
         );
     }
 }
 
 export default Todolist;
+
+/*
+<div className='chart-card' key={'chart-card' + index}>
+<div className='chart-name' style={{backgroundColor: chartItem.color}} key={'chart-name' + index}>
+    名前です
+</div>
+<div className='chart-content' key={'chart-content' + index}>
+    {chartItem.content}
+</div>
+</div>
+*/
+
+/*
+
+*/

@@ -1,6 +1,9 @@
 const Calendar = () => {
 	return (
-	  <p>this is <b>Calendar</b> page.</p>
+		<div>
+			<p>this is <b>Calendar</b> pages</p>
+			<p>カレンダーページ（ミニマムじゃないよ）</p>
+		</div>
 	)
 }
 
