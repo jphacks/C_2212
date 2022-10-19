@@ -2,6 +2,7 @@ import React from "react";
 import pagenextPrev from "../images/pageprev.png";
 import pagenextImg from "../images/pagenext.png";
 import "./todolist.css";
+import chartList from "../lib/data/task_ls.json"
 
 // チャートページのクラス
 class Todolist extends React.Component {
@@ -27,47 +28,8 @@ class Todolist extends React.Component {
     render() {
 
         // チャートリスト
-        const chartList = [
-            {
-                name: "車校①",
-                color: "#ff2442",
-                content: "テスト1",
-                newFlag: false
-            },
-            {
-                name: "車校②",
-                color: "#ffb01a",
-                content: "あいあいあい",
-                newFlag: false
-            },
-            {
-                name: "テス勉",
-                color: "#3db2ff",
-                content: "コンテンツのテスト",
-                newFlag: false
-            },
-            {
-                name: "部活動",
-                color: "#ffb01a",
-                newFlag: false
-            },
-            {
-                name: "旅行",
-                color: "#3db2ff",
-                newFlag: false
-            },
-            {
-                name: "旅行②",
-                color: "#ff2442",
-                newFlag: false
-            },
-            {
-                name: "旅行③",
-                color: "#ff2466",
-                newFlag: false
-            }
-        ];
-        const chartsCount = chartList.length;
+        
+        const chartsCount = chartList.tasks.length;
         const currentPageNum = this.state.pageNum;
         
         // ページ送り
@@ -82,15 +44,16 @@ class Todolist extends React.Component {
 
             // 最終ページには灰色のチャートを作成
             for (let i = 0; i < 6 - chartsCount % 6; i++) {
-                chartList.push({
+                chartList.tasks.push({
                     name: "未作成",
+                    content: "",
                     color: "#bdbdbd",
                     newFlag: true
                 });
             }
 
         }
-        const displayCharts = chartList.slice(currentPageNum * 6, currentPageNum * 6 + 6);
+        const displayCharts = chartList.tasks.slice(currentPageNum * 6, currentPageNum * 6 + 6);
 
         // 一覧を表示
         return (

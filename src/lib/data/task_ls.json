@@ -1,0 +1,46 @@
+{
+    "tasks": [
+        {
+            "name": "車校①",
+            "color": "#ff2442",
+            "content": "テスト1",
+            "newFlag": false
+        },
+        {
+            "name": "車校②",
+            "color": "#ffb01a",
+            "content": "あいあいあい",
+            "newFlag": false
+        },
+        {
+            "name": "テス勉",
+            "color": "#3db2ff",
+            "content": "コンテンツのテスト",
+            "newFlag": false
+        },
+        {
+            "name": "部活動",
+            "content": "",
+            "color": "#ffb01a",
+            "newFlag": false
+        },
+        {
+            "name": "旅行",
+            "content": "",
+            "color": "#3db2ff",
+            "newFlag": false
+        },
+        {
+            "name": "旅行②",
+            "content": "",
+            "color": "#ff2442",
+            "newFlag": false
+        },
+        {
+            "name": "旅行③",
+            "content": "",
+            "color": "#ff2466",
+            "newFlag": false
+        }
+    ]
+}
