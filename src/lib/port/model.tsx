@@ -1,12 +1,14 @@
-import { DefaultPortModel } from "@projectstorm/react-diagrams";
+import { DefaultPortModel, DefaultPortModelOptions } from "@projectstorm/react-diagrams";
 import { AdvancedLinkModel } from "../link/model";
+
+
+
+export interface AdvancedPortModelOptions extends DefaultPortModelOptions {}
 
 export class AdvancedPortModel extends DefaultPortModel {
 
-	constructor() {
-		super({
-			name: "advanced"
-		});
+	constructor(options: AdvancedPortModelOptions) {
+		super(options as DefaultPortModelOptions);
 	}
 
 	createLinkModel(): AdvancedLinkModel {

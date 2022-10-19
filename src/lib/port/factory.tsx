@@ -17,9 +17,9 @@ export class AdvancedPortFactory extends DefaultPortFactory {
 		super();
 	}
 
-	generateModel(): AdvancedPortModel {
-		return new AdvancedPortModel();
-	}
+	// generateModel(): AdvancedPortModel {
+	// 	return new AdvancedPortModel();
+	// }
 
 
 	generateReactWidget(event: GenerateWidgetEvent<AdvancedPortModel>): JSX.Element {

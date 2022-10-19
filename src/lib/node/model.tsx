@@ -8,6 +8,7 @@
 
 import { BaseModelOptions } from "@projectstorm/react-canvas-core";
 import { NodeModel, DefaultPortModel } from "@projectstorm/react-diagrams"
+import { AdvancedPortModel } from "../port/model";
 
 
 export interface TaskNodeModelOptions extends BaseModelOptions {
@@ -34,13 +35,13 @@ export class TaskNodeModel extends NodeModel {
 		this.progress = options.progress || 0;
 
 		this.addPort(
-			new DefaultPortModel({
+			new AdvancedPortModel({
 				in: true,
 				name: 'in'
 			})
 		);
 		this.addPort(
-			new DefaultPortModel({
+			new AdvancedPortModel({
 				in: false,
 				name: 'out'
 			})
