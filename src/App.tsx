@@ -9,7 +9,7 @@ import Diagram from "./pages/diagram"
 import Todolist from "./pages/todolist"
 
 import Navbar from "./components/navbar"
-
+import TagPaper from './components/tagpaper';
 
 function App() {
   const ROUTER_BASENAME = "/C_2212"

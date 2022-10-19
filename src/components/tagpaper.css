@@ -1,0 +1,35 @@
+.tag_contents{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        padding: 0px 5rem;
+        box-sizing: border-box;
+        background-color: rgb(221, 221, 221);
+        z-index: 0;
+    }
+    
+    p {
+        position: relative;
+        margin-bottom: 0.2rem;
+        padding: 1rem;
+        border-left: 30px solid #EF9293;
+        background-color: white;
+        color: #212121;
+        font-weight: bold;
+        font-size: 23px;
+    }
+    
+    p::before {
+        position: absolute;
+        right: 1px;
+        bottom: 10px;
+        width: 50%;
+        height: 50%;
+        box-shadow: 0 10px 15px #333;
+        transform: rotate(4deg);
+        z-index: -1;
+        content: '';
+    }
