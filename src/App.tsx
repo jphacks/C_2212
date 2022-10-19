@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom"
 import React from 'react';
 
+import Task from "./pages/task"
 import Home from "./pages/home"
 import Calendar from "./pages/calendar"
 import Diagram from "./pages/diagram"
@@ -23,6 +24,7 @@ function App() {
         <Route path="/calendar" element={<Calendar/>}/>
         <Route path="/diagram" element={<Diagram/>}/>
         <Route path="/todolist" element={<Todolist/>}/>
+        <Route path="/tasks" element={<Task/>}/>
       </Routes> 
     </Router>
   );
