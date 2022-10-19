@@ -1,0 +1,15 @@
+
+.task-node {
+    /* background-color: aqua; */
+    
+}
+
+.task-node-content {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.task-node-title {
+    font: bold;
+    text-align: center;
+}

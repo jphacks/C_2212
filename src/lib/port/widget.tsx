@@ -1,6 +1,4 @@
-import { DiagramEngine, PortProps } from "@projectstorm/react-diagrams";
-import React from "react";
-import { AdvancedPortModel } from "./model";
+import { PortProps } from "@projectstorm/react-diagrams";
 
 /*
 	Widgetクラスでは、
