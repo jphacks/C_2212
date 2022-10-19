@@ -12,20 +12,32 @@ import chartplusImg from '../images/chartplus.png';
 // チャートページのクラス
 class Todolist extends React.Component {
     
+    // 型定義・初期化
+    // State
     state: {
         pageNum: number, 
+        currentColor: number,
         chartCreateIndex: number,
-        isChartCreate: boolean
+        isChartCreate: boolean,
         inputValue: string
     };
 
+    // チャートデータ
     chartData: {
         name?: string,
-        color?: string,
+        color?: number,
         content?: string,
         newFlag?: boolean,
         unvisible?: boolean,
     }[];
+
+    // テーマカラー
+    themeColor = [
+        "#ff2442",  // 赤色
+        "#ffb01a",  // 黄色
+        "#3db2ff",  // 水色
+        "#2994b2"   // エメラルド色
+    ]
 
     // コンストラクタ
     constructor(props: object) {
@@ -35,41 +47,42 @@ class Todolist extends React.Component {
             pageNum: 0,
             chartCreateIndex: -1,
             isChartCreate: false,
-            inputValue: ''
+            inputValue: '',
+            currentColor: 0
         };
 
         // チャートリスト
         this.chartData = [
             {
                 name: "あああああああ",
-                color: "#ff2442",
+                color: 0,
                 content: "テスト1",
             },
             {
                 name: "車校②",
-                color: "#ffb01a",
+                color: 1,
                 content: "あいあいあい"
             },
             {
                 name: "テス勉",
-                color: "#3db2ff",
+                color: 2,
                 content: "コンテンツのテスト"
             },
             {
                 name: "部活動",
-                color: "#ffb01a"
+                color: 1
             },
             {
                 name: "旅行",
-                color: "#3db2ff"
+                color: 2
             },
             {
                 name: "旅行②",
-                color: "#ff2442"
+                color: 0
             },
             {
                 name: "旅行③",
-                color: "#ff2466"
+                color: 3
             }
         ];
     }
@@ -102,41 +115,13 @@ class Todolist extends React.Component {
         }
         displayCharts = chartList.slice(currentPageNum * 6, currentPageNum * 6 + 6);
 
-        // モーダル部分
+        // モーダル(子ウィンドウ)
         let modal: any;
-
-        // 新規作成ページを表示するか
+        // モーダル：新規作成ページ
         if (this.state.isChartCreate) {
-            modal = (
-                <div className='modal'>
-                    <div className='modal-inner'>
-                        <div className='modal-header'></div>
-                        <div className='modal-introduction'>
-                            新規チャート名を入力してください
-                        </div>
-                        <form onSubmit={() => {this.handleClickChartCreateSubmit(this.state.inputValue)}}>
-                            <div className="modal-chart-name-input">
-                                <label className="modal-chart-name-label">
-                                    {/* inputタグでチャート名を入力 */}
-                                    <input
-                                        type="text"
-                                        placeholder="チャート名"
-                                        value={this.state.inputValue}
-                                        onChange={(event) => {this.setState({inputValue: event.target.value})}}
-                                    />
-                                </label>
-                            </div>
-                            <button type='submit' className='modal-create-btn'>
-                                新規作成
-                            </button>
-                            <button className='modal-close-btn' onClick={() => {this.handleClickChartClose()}}>
-                                もどる
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            );
+            modal = this.modal_newChart(this.state.currentColor);
         }
+        // モーダル：チャート情報の編集
 
         // 最終レンダリング
         return (
@@ -173,7 +158,7 @@ class Todolist extends React.Component {
                                  onClick={() => {this.chartThumbnailOnClick(currentPageNum * 6 + index)}}
                                  key={'chart-card' + index}
                             >
-                                <div className='chart-name' style={{backgroundColor: chartItem.color}} key={'chart-name' + index}>
+                                <div className='chart-name' style={{backgroundColor: this.themeColor[chartItem.color]}} key={'chart-name' + index}>
                                     <div className='chart-name-text' key={'chart-name-text' + index}>
                                     {this.chartNameDisplay(chartItem.name)}
                                     </div>
@@ -207,15 +192,15 @@ class Todolist extends React.Component {
         this.setState({
             isChartCreate: true,
             chartCreateIndex: index,
-            pageNum: page
+            pageNum: page,
+            currentColor: 0
         });
     }
 
     handleClickChartCreateSubmit(name: string) {
         this.chartData[this.state.chartCreateIndex] =({
             name: name,
-            color: "#bdbdbd",
-            newFlag: false
+            color: this.state.currentColor
         });
         Todolist.update('task_class_name', this.chartData[this.state.chartCreateIndex].name)
         this.setState({
@@ -246,9 +231,71 @@ class Todolist extends React.Component {
         console.log(Todolist.toObject());
     }
 
-    // チャートカラーを変更
+    // モーダル：チャート新規作成
+    modal_newChart(currentColor: number) {
+
+        const colorList: any[] = [];
+        for (let i = 0; i < this.themeColor.length; i++) {
+            if (currentColor == i) {
+                colorList.push(
+                    <div className="modal-chart-color-select"
+                        onClick={() => {this.setState({currentColor: i})}}
+                        style={{backgroundColor: this.themeColor[i]}}
+                        key={'chart-content' + i}
+                    >
+                    &nbsp;</div>
+                );
+            } else {
+                colorList.push(
+                    <div className="modal-chart-color-unselect"
+                        onClick={() => {this.setState({currentColor: i})}}
+                        style={{backgroundColor: this.themeColor[i]}}
+                        key={'chart-content' + i}
+                    >
+                    &nbsp;</div>
+                );
+            }
+        }
+
+        return (
+            <div className='modal'>
+                <div className='modal-inner'>
+                    <div className='modal-header'></div>
+                    <div className='modal-introduction'>
+                        新規チャート名を入力してください
+                    </div>
+                    <form onSubmit={() => {this.handleClickChartCreateSubmit(this.state.inputValue)}}>
+                        <div className="modal-chart-name-input">
+                            <label className="modal-chart-name-label">
+                                {/* inputタグでチャート名を入力 */}
+                                <input
+                                    type="text"
+                                    placeholder="チャート名"
+                                    value={this.state.inputValue}
+                                    onChange={(event) => {this.setState({inputValue: event.target.value})}}
+                                />
+                            </label>
+                        </div>
+                        <div className="modal-chart-color-input">
+                            テーマカラー
+                            <div className="modal-chart-color-labels">
+                            {colorList}
+                            </div>
+                        </div>
+                        <button type='submit' className='modal-create-btn'>
+                            新規作成
+                        </button>
+                        <button className='modal-close-btn' onClick={() => {this.handleClickChartClose()}}>
+                            もどる
+                        </button>
+                    </form>
+                </div>
+            </div>
+        );
+    }
+
+    // モーダル：チャート情報を編集
     
-    // チャートを消去
 
     // クエリパラメーターを作成・更新
     static update(key: string, value?: string): boolean {
@@ -262,11 +309,13 @@ class Todolist extends React.Component {
         return true;
     }
 
+    // 指定したキーワードのクエリパラメータを取得
     static get(key: string): string {
         const params: any = this.toObject();
         return params[key];
     }
 
+    // クエリパラメータの一覧を連想配列で取得
     static toObject(): Object {
         let vars : any = {}, max: number, hash: any, array: any = "";
         let url = window.location.search;
