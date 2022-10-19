@@ -7,12 +7,17 @@ import "./tagpaper.css"
                 task_name: "FocusGold IA"
             }
         ]
+        
+        function choose(props: any) {
+            return ["10/23(Thu) FocusGold IA",""]
+        }
 
         const TagPaper = (props: any) => {
+            let express = choose(props);
             return (
                 <div className="tag_contents" >
-                    <p>{props.scheduled_date}</p>
-                    <p>{props.task_name}</p>
+                    <p>{express[0]}</p>
+                    <p>{express[1]}</p>
                 </div>
             )
         }

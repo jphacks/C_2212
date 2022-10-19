@@ -2,6 +2,7 @@ import React from "react";
 import pagenextPrev from "../images/pageprev.png";
 import pagenextImg from "../images/pagenext.png";
 import "./todolist.css";
+import TagPaper from "../components/tagpaper";
 
 // チャートページのクラス
 class Todolist extends React.Component {
@@ -49,20 +50,24 @@ class Todolist extends React.Component {
             {
                 name: "部活動",
                 color: "#ffb01a",
+                content: "",
                 newFlag: false
             },
             {
                 name: "旅行",
                 color: "#3db2ff",
+                content: "",
                 newFlag: false
             },
             {
                 name: "旅行②",
                 color: "#ff2442",
+                content: "",
                 newFlag: false
             },
             {
                 name: "旅行③",
+                content: "",
                 color: "#ff2466",
                 newFlag: false
             }
@@ -85,6 +90,7 @@ class Todolist extends React.Component {
                 chartList.push({
                     name: "未作成",
                     color: "#bdbdbd",
+                    content: "",
                     newFlag: true
                 });
             }
@@ -106,7 +112,7 @@ class Todolist extends React.Component {
                                     <div className='chart-name-text' key={'chart-name-text' + index}>{chartItem.name}</div>
                                 </div>
                                 <div className='chart-content' key={'chart-content' + index}>
-                                    {chartItem.content}
+                                    {TagPaper(chartItem.content)}
                                 </div>
                             </div>
                         );
