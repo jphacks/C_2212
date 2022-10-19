@@ -1,5 +1,5 @@
 // Navbar.js
-
+import React from "react";
 
 import { Link } from "react-router-dom";
 import "./navbar.css"
@@ -45,7 +45,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navigation-tasks">
-        <Link to="/todolist" className="navogation-task-title">Tasks</Link>
+        <Link to="/tasks" className="navogation-task-title">Tasks</Link>
         <NavTaskList tasks={sample_tasks} />
       </div>
     </nav>

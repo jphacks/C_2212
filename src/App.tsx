@@ -6,7 +6,7 @@ import React from 'react';
 import Home from "./pages/home"
 import Calendar from "./pages/calendar"
 import Diagram from "./pages/diagram"
-import Todolist from "./pages/todolist"
+import Todolist from "./pages/tasks"
 
 import Navbar from "./components/navbar"
 
@@ -23,7 +23,7 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/calendar" element={<Calendar/>}/>
         <Route path="/diagram" element={<Diagram/>}/>
-        <Route path="/todolist" element={<Todolist/>}/>
+        <Route path="/tasks" element={<Todolist/>}/>
       </Routes> 
     </Router>
   );
