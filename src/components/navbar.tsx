@@ -2,12 +2,8 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
-import "./navbar.css"
-
-const sample_tasks = [
-  "shakou", "TOEIC", "ababa"
-]
-
+import "./navbar.css";
+import task_ls from "../lib/data/task_ls.json"
 
 const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
   return (
@@ -24,7 +20,10 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
 };
 
 const Navbar = () => {
-
+  let tasks_name = [];
+  for(let i=0;i !== task_ls.tasks.length;i++){
+    tasks_name[i] = task_ls.tasks[i].name
+  }
   return (
     <nav className="navigation">
       <Link to="/" className="brand-name">
@@ -45,8 +44,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navigation-tasks">
-        <Link to="/tasks" className="navogation-task-title">Tasks</Link>
-        <NavTaskList tasks={sample_tasks} />
+        <div onClick={() => {window.location.href = "/C_2212/tasks";}} className="navogation-task-title">Tasks</div>
+        <NavTaskList tasks={tasks_name} />
       </div>
     </nav>
   );

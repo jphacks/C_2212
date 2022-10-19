@@ -3,13 +3,13 @@ import './App.css';
 import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom"
 import React from 'react';
 
+import Task from "./pages/task"
 import Home from "./pages/home"
 import Calendar from "./pages/calendar"
 import Diagram from "./pages/diagram"
 import Todolist from "./pages/tasks"
 
 import Navbar from "./components/navbar"
-
 
 function App() {
   const ROUTER_BASENAME = "/C_2212"

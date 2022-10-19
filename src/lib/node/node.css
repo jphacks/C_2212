@@ -1,0 +1,30 @@
+
+.task-node {
+    position: relative;
+}
+
+
+.task-port-in {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+}
+
+.task-port-out {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+}
+
+
+
+.task-node-content {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.task-node-title {
+    font: bold;
+    text-align: center;
+    padding-top: 0.5rem;
+}
