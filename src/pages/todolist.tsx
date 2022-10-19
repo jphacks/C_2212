@@ -1,7 +1,7 @@
 import React from "react";
 import pagenextPrev from "../images/pageprev.png";
 import pagenextImg from "../images/pagenext.png";
-import "./todolist.css";
+// import "./todolist.css";
 import chartList from "../lib/data/task_ls.json"
 import TagPaper from "../components/tagpaper";
 
@@ -49,7 +49,6 @@ class Todolist extends React.Component {
                     name: "未作成",
                     content: "",
                     color: "#bdbdbd",
-                    content: "",
                     newFlag: true
                 });
             }
@@ -98,18 +97,3 @@ class Todolist extends React.Component {
 }
 
 export default Todolist;
-
-/*
-<div className='chart-card' key={'chart-card' + index}>
-<div className='chart-name' style={{backgroundColor: chartItem.color}} key={'chart-name' + index}>
-    名前です
-</div>
-<div className='chart-content' key={'chart-content' + index}>
-    {chartItem.content}
-</div>
-</div>
-*/
-
-/*
-
-*/
