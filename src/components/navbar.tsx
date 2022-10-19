@@ -44,7 +44,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navigation-tasks">
-        <Link to="/todolist" className="navogation-task-title">Tasks</Link>
+        <div onClick={() => {window.location.href = "/C_2212/todolist";}} className="navogation-task-title">Tasks</div>
         <NavTaskList tasks={tasks_name} />
       </div>
     </nav>
