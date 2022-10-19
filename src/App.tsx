@@ -11,7 +11,6 @@ import Todolist from "./pages/todolist"
 
 import Navbar from "./components/navbar"
 
-
 function App() {
   const ROUTER_BASENAME = "/C_2212"
 

@@ -6,6 +6,7 @@ import { TaskNodeFactory } from '../lib/node/factory';
 import { TaskNodeModel } from '../lib/node/model';
 import { AdvancedLinkModel } from '../lib/link/model';
 import { AdvancedLinkFactory } from '../lib/link/factory';
+import { AdvancedPortFactory } from '../lib/port/factory';
 
 
 const Diagram = () => {
@@ -13,34 +14,35 @@ const Diagram = () => {
 	var engine = createEngine();
 	engine.getLinkFactories().registerFactory(new AdvancedLinkFactory());
 	engine.getNodeFactories().registerFactory(new TaskNodeFactory());
+	engine.getPortFactories().registerFactory(new AdvancedPortFactory());
 
 	const model = new DiagramModel();
 
-	const taskNode1 = new TaskNodeModel({ name: "顧客ヒアリング", scheduledWorkDays: 2 });
+	const taskNode1 = new TaskNodeModel({ name: "顧客ヒアリング", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode1.setPosition(200, 200);
-	const taskNode2 = new TaskNodeModel({ name: "プロトタイプ作成", scheduledWorkDays: 2 });
+	const taskNode2 = new TaskNodeModel({ name: "プロトタイプ作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode2.setPosition(500, 0);
-	const taskNode4 = new TaskNodeModel({ name: "要件定義書作成", scheduledWorkDays: 2 });
+	const taskNode4 = new TaskNodeModel({ name: "要件定義書作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode4.setPosition(500, 400);
-	const taskNode6 = new TaskNodeModel({ name: "契約書締結", scheduledWorkDays: 2 });
+	const taskNode6 = new TaskNodeModel({ name: "契約書締結", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode6.setPosition(800, 200);
 
-	const taskNode3 = new TaskNodeModel({ name: "画面遷移図作成", scheduledWorkDays: 2 });
+	const taskNode3 = new TaskNodeModel({ name: "画面遷移図作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode3.setPosition(1100, 0);
-	const taskNode5 = new TaskNodeModel({ name: "DB設計", scheduledWorkDays: 2 });
+	const taskNode5 = new TaskNodeModel({ name: "DB設計", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode5.setPosition(1100, 400);
-	const taskNode7 = new TaskNodeModel({ name: "API実装", scheduledWorkDays: 2 });
+	const taskNode7 = new TaskNodeModel({ name: "API実装", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode7.setPosition(1400, 400);
-	const taskNode8 = new TaskNodeModel({ name: "フロントエンド実装", scheduledWorkDays: 2 });
+	const taskNode8 = new TaskNodeModel({ name: "フロントエンド実装", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode8.setPosition(1400, 0);
 
-	const taskNode9 = new TaskNodeModel({ name: "結合テスト", scheduledWorkDays: 2 });
+	const taskNode9 = new TaskNodeModel({ name: "結合テスト", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode9.setPosition(1700, 200);
-	const taskNode10 = new TaskNodeModel({ name: "総合テスト", scheduledWorkDays: 2 });
+	const taskNode10 = new TaskNodeModel({ name: "総合テスト", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode10.setPosition(2000, 200);
-	const taskNode12 = new TaskNodeModel({ name: "納品", scheduledWorkDays: 2 });
+	const taskNode12 = new TaskNodeModel({ name: "納品", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode12.setPosition(2300, 200);
-	const taskNode11 = new TaskNodeModel({ name: "検収修正", scheduledWorkDays: 2 });
+	const taskNode11 = new TaskNodeModel({ name: "検収修正", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 	taskNode11.setPosition(2600, 200);
 
 	const link1 = new AdvancedLinkModel()
