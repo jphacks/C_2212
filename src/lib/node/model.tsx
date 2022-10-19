@@ -1,14 +1,21 @@
 /*
 	Modelクラスでは、
-	・データ
-	・ロジック
+		・データ
+		・ロジック
 	を定義する
 */
 
 
 import { BaseModelOptions } from "@projectstorm/react-canvas-core";
 import { NodeModel, DefaultPortModel } from "@projectstorm/react-diagrams"
+import { AdvancedPortModel } from "../port/model";
 
+
+export interface TaskNodeModelOptions extends BaseModelOptions {
+	name?: string
+	scheduledWorkDays?: number
+	progress?: number
+}
 
 export class TaskNodeModel extends NodeModel {
 	// クラスにプロパティとして定義
@@ -19,7 +26,7 @@ export class TaskNodeModel extends NodeModel {
 	constructor(options: TaskNodeModelOptions = {}) {
 		super({
 			...options,
-			type: 'default'
+			type: 'advanced'
 		});
 
 	// 初期化
@@ -28,13 +35,13 @@ export class TaskNodeModel extends NodeModel {
 		this.progress = options.progress || 0;
 
 		this.addPort(
-			new DefaultPortModel({
+			new AdvancedPortModel({
 				in: true,
 				name: 'in'
 			})
 		);
 		this.addPort(
-			new DefaultPortModel({
+			new AdvancedPortModel({
 				in: false,
 				name: 'out'
 			})
@@ -68,10 +75,4 @@ export class TaskNodeModel extends NodeModel {
 		this.scheduledWorkDays = event.data.scheduledWorkDays || 1;
 		this.progress = event.data.progress || 0;
 	}
-}
-
-export interface TaskNodeModelOptions extends BaseModelOptions {
-	name?: string
-	scheduledWorkDays?: number
-	progress?: number
 }
