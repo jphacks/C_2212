@@ -7,21 +7,25 @@
 
 
 import { BaseModelOptions } from "@projectstorm/react-canvas-core";
-import { NodeModel, DefaultPortModel } from "@projectstorm/react-diagrams"
+import { NodeModel } from "@projectstorm/react-diagrams"
 import { AdvancedPortModel } from "../port/model";
 
 
 export interface TaskNodeModelOptions extends BaseModelOptions {
 	name?: string
-	scheduledWorkDays?: number
-	progress?: number
+	scheduled_date?: string
+	deadline?: string
+	from?: string
+	to?: string
 }
 
 export class TaskNodeModel extends NodeModel {
 	// クラスにプロパティとして定義
 	name: string   
-	scheduledWorkDays: number       
-	progress: number                
+	scheduled_date: string
+	deadline: string
+	from: string
+	to: string
 
 	constructor(options: TaskNodeModelOptions = {}) {
 		super({
@@ -30,9 +34,11 @@ export class TaskNodeModel extends NodeModel {
 		});
 
 	// 初期化
-		this.name = options.name || '';
-		this.scheduledWorkDays = options.scheduledWorkDays || 1;
-		this.progress = options.progress || 0;
+		this.name = options.name || '未設定';
+		this.scheduled_date = options.scheduled_date || "未設定";
+		this.deadline = options.deadline || "";
+		this.from = options.from || "";
+		this.to = options.to || "";
 
 		this.addPort(
 			new AdvancedPortModel({
@@ -48,31 +54,26 @@ export class TaskNodeModel extends NodeModel {
 		);
 	}
 
-	addProgress(percent: number) {
-		this.progress += percent;
-		if (this.progress > 100) this.progress = 100;
-	}
-
-	downProgress(percent: number) {
-		this.progress -= percent
-		if (this.progress < 0) this.progress = 0;
-	}
 
 	serialize() {
 		return {
 			...super.serialize(),
 	// JSONへのシリアライズ時の挙動
 			name: this.name,
-			scheduledWorkDays: this.scheduledWorkDays,
-			progress: this.progress
+			scheduled_date: this.scheduled_date,
+			deadline: this.deadline,
+			from: this.from,
+			to: this.to,
 		};
 	}
 
 	deserialize(event: any): void {
 		super.deserialize(event);
 	// JSONからの復元時の挙動
-		this.name = event.data.name || '';
-		this.scheduledWorkDays = event.data.scheduledWorkDays || 1;
-		this.progress = event.data.progress || 0;
+		this.name = event.data.name || '未設定';
+		this.scheduled_date = event.data.scheduled_date;
+		this.deadline = event.data.deadline;
+		this.from = event.data.from;
+		this.to = event.data.to;
 	}
 }
