@@ -10,7 +10,7 @@ import pagenextImg from '../images/pagenext.png';
 import chartplusImg from '../images/chartplus.png';
 
 // チャートページのクラス
-class Todolist extends React.Component {
+class Tasks extends React.Component {
     
     // 型定義・初期化
     // State
@@ -202,7 +202,7 @@ class Todolist extends React.Component {
             name: name,
             color: this.state.currentColor
         });
-        Todolist.update('task_class_name', this.chartData[this.state.chartCreateIndex].name)
+        Tasks.update('task_class_name', this.chartData[this.state.chartCreateIndex].name)
         this.setState({
             isChartCreate: false,
             chartCreateIndex: null
@@ -227,8 +227,8 @@ class Todolist extends React.Component {
 
     // 既存チャートをクリックしたらクエリパラメータを追加
     chartThumbnailOnClick(index: number) {
-        Todolist.update('task_class_name', this.chartData[index].name)
-        console.log(Todolist.toObject());
+        Tasks.update('task_class_name', this.chartData[index].name)
+        console.log(Tasks.toObject());
     }
 
     // モーダル：チャート新規作成
@@ -334,4 +334,4 @@ class Todolist extends React.Component {
     }
 }
 
-export default Todolist;
+export default Tasks;
