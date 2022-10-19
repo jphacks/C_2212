@@ -49,7 +49,7 @@ export class TaskNodeWidget extends React.Component<
 				</AdvancedPortWidget>
 				)}
 				<div className="task-node-content has-text-light">
-					<div className="task-node-title">{this.props.node.name}</div>
+					<p className="task-node-title">{this.props.node.name}</p>
 					<ul className="task-node-detail">
 						<li>
 							<b>予定日：</b>
