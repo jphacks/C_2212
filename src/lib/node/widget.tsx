@@ -35,8 +35,9 @@ export class TaskNodeWidget extends React.Component<
 				<AdvancedPortWidget
 					engine={this.props.engine}
 					port={this.props.node.getPort("in")!}
+					className="task-port-in"
 				>
-					<div className="circle-port" />
+					<div />
 				</AdvancedPortWidget>
 				)}
 
@@ -44,8 +45,9 @@ export class TaskNodeWidget extends React.Component<
 				<AdvancedPortWidget
 					engine={this.props.engine}
 					port={this.props.node.getPort("out")!}
+					className="task-port-out"
 				>
-					<div className="circle-port" />
+					<div />
 				</AdvancedPortWidget>
 				)}
 				<div className="task-node-content has-text-light">
