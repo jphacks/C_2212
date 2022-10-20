@@ -1,59 +1,55 @@
 {
-    "themeColor": [
-        "#ff2442",
-        "#ffb01a",
-        "#3db2ff",
-        "#2994b2"
-    ],
-    "tasks": [
+    "task_groups": [
         {
-            "name": "車校①",
+            "task_group_name": "shakou 1",
             "color": 0,
             "content": "テスト1",
             "newChart": false,
-            "unvisible": false
+            "unvisible": false,
+            "tasks": [
+                {
+                    "task_name": "学科１",
+                    "color": 0,
+                    "scheduled_date": "10/20",
+                    "deadline": "10/30"
+                },
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                },
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                }
+            ]
         },
         {
-            "name": "車校②",
-            "color": 1,
-            "content": "あいあいあい",
-            "newChart": false,
-            "unvisible": false
-        },
-        {
-            "name": "テス勉",
-            "color": 2,
-            "content": "コンテンツのテスト",
-            "newChart": false,
-            "unvisible": false
-        },
-        {
-            "name": "部活動",
-            "color": 1,
-            "content": "",
-            "newChart": false,
-            "unvisible": false
-        },
-        {
-            "name": "旅行",
-            "color": 2,
-            "content": "",
-            "newChart": false,
-            "unvisible": false
-        },
-        {
-            "name": "旅行②",
+            "task_group_name": "shakou 2",
             "color": 0,
-            "content": "",
+            "content": "テスト2",
             "newChart": false,
-            "unvisible": false
+            "unvisible": false,
+            "tasks": [
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                },
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                },
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                }
+            ]
         },
-        {
-            "name": "旅行③",
-            "color": 3,
-            "content": "",
-            "newChart": false,
-            "unvisible": false
-        }
+        {}
     ]
 }
+

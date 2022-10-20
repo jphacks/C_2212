@@ -21,7 +21,7 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
 
 const Navbar = () => {
   let tasks_name = [];
-  for(let i=0;i !== task_ls.tasks.length;i++){
+  for(let i=0;i < task_ls.tasks.length;i++){
     tasks_name[i] = task_ls.tasks[i].name
   }
   return (
