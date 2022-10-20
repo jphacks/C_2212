@@ -7,7 +7,7 @@ export class LocalStorageManager {
     data: LocalStorageDataType;
 
     constructor() {
-        this.data = JSON.parse(localStorage.getItem("data") || "{}");
+        this.sync()
     }
 
     private save(): void { // this.data -> localstorageにセーブ
