@@ -40,7 +40,6 @@ export class TaskNodeWidget extends React.Component<
 					<div />
 				</AdvancedPortWidget>
 				)}
-
 				{this.props.node.getPort("out") && (
 				<AdvancedPortWidget
 					engine={this.props.engine}
@@ -51,17 +50,12 @@ export class TaskNodeWidget extends React.Component<
 				</AdvancedPortWidget>
 				)}
 				<div className="task-node-content has-text-light">
-					<p className="task-node-title">{this.props.node.name}</p>
-					<ul className="task-node-detail">
-						<li>
-							<b>予定日：</b>
-							<b>{this.props.node.scheduled_date}</b>
-						</li>
-						<li>
+					<h1 className="task-node-title">{this.props.node.name}</h1>
+					<ol className="task-node-detail">
+						<h1 className="expected_date">{this.props.node.scheduled_date}</h1>
 							<b>締切：</b>
 							<b>{this.props.node.deadline}</b>
-						</li>
-					</ul>
+					</ol>
 				</div>
 			</div>
 		);

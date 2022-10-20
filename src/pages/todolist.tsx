@@ -49,7 +49,6 @@ class Todolist extends React.Component {
                     name: "未作成",
                     content: "",
                     color: "#bdbdbd",
-                    content: "",
                     newFlag: true
                 });
             }

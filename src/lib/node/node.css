@@ -16,7 +16,15 @@
     left: 100%;
 }
 
-
+.expected_date {
+    width : 30%;
+    position: absolute;
+    left: 0%;
+    top : -5%;
+    border-top-left-radius: 10%;
+    font-size: 100%;
+    background-color: rgb(127, 236, 255);
+}
 
 .task-node-content {
     background-color: white;
