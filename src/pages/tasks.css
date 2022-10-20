@@ -56,14 +56,14 @@ body {
     transition: .3s ease-in-out;
 }
 
-.chart-card:active {
-    transform: scale(1, 1);
-    transition: .05s ease-in-out;
+.chart-card-tools {
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
 }
 
 .chart-name {
     width: 40%;
-    height: 20%;
     border-radius: 5px 0 0 0;
 }
   
@@ -76,6 +76,24 @@ body {
 .chart-content {
     display: inline;
     vertical-align: -200%;
+}
+
+.chart-edit {
+    width: 25%;
+    visibility: hidden;
+}
+
+.chart-edit img {
+    transform: scale(0.25, 0.25);
+}
+
+.chart-card:hover .chart-edit {
+    visibility: visible;
+}
+
+.chart-edit:hover {
+    filter: brightness(0.4);
+    transition: .1s;
 }
 
 /* 新規作成のチャート */
@@ -174,11 +192,28 @@ body {
     padding: 16px 0;
     margin: 5px 0;
     border: 0;
-    background-color: #F67575;
+    background-color: #75adf6;
     cursor: pointer;
 }
 
 .modal-create-btn:hover {
+    color: #ffffff;
+    background-color: #c6d1eb;
+    transition: .3s ease-in-out;
+}
+
+.modal-delete-btn {
+    font-size: 13px;
+    color: #ffffff;
+    width: 200px;
+    padding: 16px 0;
+    margin: 5px 0;
+    border: 0;
+    background-color: #F67575;
+    cursor: pointer;
+}
+
+.modal-delete-btn:hover {
     color: #ffffff;
     background-color: #EBC6C6;
     transition: .3s ease-in-out;
@@ -203,6 +238,7 @@ body {
 
 .modal-chart-color-input {
 	width: 40%;
+    margin-bottom: 5%;
 }
 
 .modal-chart-color-labels {
