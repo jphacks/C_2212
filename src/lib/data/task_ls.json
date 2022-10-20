@@ -1,46 +1,59 @@
 {
+    "themeColor": [
+        "#ff2442",
+        "#ffb01a",
+        "#3db2ff",
+        "#2994b2"
+    ],
     "tasks": [
         {
             "name": "車校①",
-            "color": "#ff2442",
+            "color": 0,
             "content": "テスト1",
-            "newFlag": false
+            "newChart": false,
+            "unvisible": false
         },
         {
             "name": "車校②",
-            "color": "#ffb01a",
+            "color": 1,
             "content": "あいあいあい",
-            "newFlag": false
+            "newChart": false,
+            "unvisible": false
         },
         {
             "name": "テス勉",
-            "color": "#3db2ff",
+            "color": 2,
             "content": "コンテンツのテスト",
-            "newFlag": false
+            "newChart": false,
+            "unvisible": false
         },
         {
             "name": "部活動",
+            "color": 1,
             "content": "",
-            "color": "#ffb01a",
-            "newFlag": false
+            "newChart": false,
+            "unvisible": false
         },
         {
             "name": "旅行",
+            "color": 2,
             "content": "",
-            "color": "#3db2ff",
-            "newFlag": false
+            "newChart": false,
+            "unvisible": false
         },
         {
             "name": "旅行②",
+            "color": 0,
             "content": "",
-            "color": "#ff2442",
-            "newFlag": false
+            "newChart": false,
+            "unvisible": false
         },
         {
             "name": "旅行③",
+            "color": 3,
             "content": "",
-            "color": "#ff2466",
-            "newFlag": false
+            "newChart": false,
+            "unvisible": false
         }
     ]
 }
