@@ -1,3 +1,4 @@
+export default () => {}
 // import React from "react";
 // import "./tasks.css";
 // import { useSearchParams } from 'react-router-dom';
