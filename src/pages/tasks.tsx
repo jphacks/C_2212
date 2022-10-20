@@ -1,12 +1,15 @@
 import React from "react";
-import { useSearchParams } from 'react-router-dom';
 import "./tasks.css";
 import task_ls from "../lib/data/task_ls.json"; // JSONをインポート
 
+// 画像ファイルをインポート
 import pageprevImg from '../images/pageprev.png';
 import pagenextImg from '../images/pagenext.png';
 import chartplusImg from '../images/chartplus.png';
 import charteditImg from '../images/chartedit.png';
+
+// URLコンポーネントをインポート
+import URLParams from '../components/params';
 
 // チャートページのクラス
 class Tasks extends React.Component {
@@ -19,7 +22,8 @@ class Tasks extends React.Component {
         targetIndex: number,
         isChartCreate: boolean,
         isChartEdit: boolean,
-        inputValue: string
+        inputValue: string,
+        renderReload: boolean
     };
 
     // コンストラクタ
@@ -33,130 +37,151 @@ class Tasks extends React.Component {
             isChartCreate: false,
             isChartEdit: false,
             inputValue: '',
+            renderReload: false
         };
     }
 
     // レンダリング
     render() {
+        console.log(URLParams.get('task_class_name') !== undefined);
+        if (URLParams.get('task_class_name') !== undefined) {
+            return (this.render_indivisualTask());
+        } else {
+            return (this.render_chartSelect());
+        }
+    }
 
-        //クエリがすでについているのなら別のページに移動
-        if(Tasks.get('task_class_name') == null) {
+    // レンダリング：チャート選択画面
+    render_chartSelect() {
 
-            const chartList = Object.assign([], task_ls.tasks);
+        const chartList = Object.assign([], task_ls.tasks);
 
-            // 最後に新規作成用のダミーチャートを挿入
-            chartList.push({
-                "name": "",
-                "color": 0,
-                "content": "",
-                "newChart": true,
-                "unvisible": false
-            });
+        // 最後に新規作成用のダミーチャートを挿入
+        chartList.push({
+            "name": "",
+            "color": 0,
+            "content": "",
+            "newChart": true,
+            "unvisible": false
+        });
 
-            const currentDisplayPageNumber = this.state.displayPageNumber;
-            const chartsCount = chartList.length;
-            
-            // ページ送り
-            let pageprev: any;
-            let pagenext: any;
-            let displayCharts: any;
-            if (currentDisplayPageNumber > 0) {
-                pageprev = (<div className='chart-pageprev'><img src={pageprevImg} alt="prev page" onClick={() => this.prevPageChange(currentDisplayPageNumber)} /></div>);
-            }
-            if (currentDisplayPageNumber * 6 + 6 < chartsCount) {
-                pagenext = (<div className='chart-pagenext'><img src={pagenextImg} alt="next page" onClick={() => this.nextPageChange(currentDisplayPageNumber)} /></div>);
-            } else if (chartsCount % 6 > 0) {
+        const currentDisplayPageNumber = this.state.displayPageNumber;
+        const chartsCount = chartList.length;
+        
+        // ページ送り
+        let pageprev: any;
+        let pagenext: any;
+        let displayCharts: any;
+        if (currentDisplayPageNumber > 0) {
+            pageprev = (<div className='chart-pageprev'><img src={pageprevImg} alt="prev page" onClick={() => this.prevPageChange(currentDisplayPageNumber)} /></div>);
+        }
+        if (currentDisplayPageNumber * 6 + 6 < chartsCount) {
+            pagenext = (<div className='chart-pagenext'><img src={pagenextImg} alt="next page" onClick={() => this.nextPageChange(currentDisplayPageNumber)} /></div>);
+        } else if (chartsCount % 6 > 0) {
 
-                // 余ったスペースは透明なダミーチャートで埋める
-                for (let i = 0; i < 6 - chartsCount % 6; i++) {
-                    chartList.push({
-                        "name": "",
-                        "color": 0,
-                        "content": "",
-                        "newChart": false,
-                        "unvisible": true
-                    });
-                }
-
-            }
-            displayCharts = chartList.slice(currentDisplayPageNumber * 6, currentDisplayPageNumber * 6 + 6);
-
-            // モーダル(子ウィンドウ)関連のレンダリング
-            let modal: any;
-            // モーダル：新規作成ページ
-            if (this.state.isChartCreate) {
-                modal = this.modal_newChart(this.state.currentColor);
-            }
-            // モーダル：チャート情報の編集
-            if (this.state.isChartEdit) {
-                modal = this.modal_editChart(this.state.currentColor);
+            // 余ったスペースは透明なダミーチャートで埋める
+            for (let i = 0; i < 6 - chartsCount % 6; i++) {
+                chartList.push({
+                    "name": "",
+                    "color": 0,
+                    "content": "",
+                    "newChart": false,
+                    "unvisible": true
+                });
             }
 
-            // 最終レンダリング
-            return (
-                <div className='chart-page'>
-                <h2 className='page-tree'>Home 》チャート一覧</h2>
-                <h1 className='page-title'>チャート一覧</h1>
-                    <div className='chart-container'>
-                    {displayCharts.map((chartItem: any, index: number) => {
-                        if (chartItem.newChart) {
-                            // 新規作成チャートを表示
-                            return (
-                                <div className='chart-create'
-                                    onClick={() => {this.handleClickChartCreate(currentDisplayPageNumber, currentDisplayPageNumber * 6 + index)}}
-                                    key={'chart-create' + index}
-                                >
-                                    <div className='chart-create-text' key={'chart-create-text' + index}>
-                                        新規作成
-                                    </div>
-                                    <div className='chart-create-plus' key={'chart-create-plus' + index}>
-                                        <img src={chartplusImg} alt="add chart" onClick={() => this.prevPageChange(currentDisplayPageNumber)}/>
-                                    </div>
+        }
+        displayCharts = chartList.slice(currentDisplayPageNumber * 6, currentDisplayPageNumber * 6 + 6);
+
+        // モーダル(子ウィンドウ)関連のレンダリング
+        let modal: any;
+        // モーダル：新規作成ページ
+        if (this.state.isChartCreate) {
+            modal = this.modal_newChart(this.state.currentColor);
+        }
+        // モーダル：チャート情報の編集
+        if (this.state.isChartEdit) {
+            modal = this.modal_editChart(this.state.currentColor);
+        }
+
+        // 最終レンダリング
+        return (
+            <div className='chart-page'>
+            <h2 className='page-tree'>Home 》チャート一覧</h2>
+            <h1 className='page-title'>チャート一覧</h1>
+                <div className='chart-container'>
+                {displayCharts.map((chartItem: any, index: number) => {
+                    if (chartItem.newChart) {
+                        // 新規作成チャートを表示
+                        return (
+                            <div className='chart-create'
+                                onClick={() => {this.handleClickChartCreate(currentDisplayPageNumber, currentDisplayPageNumber * 6 + index)}}
+                                key={'chart-create' + index}
+                            >
+                                <div className='chart-create-text' key={'chart-create-text' + index}>
+                                    新規作成
                                 </div>
-                            );
-                        } else if (chartItem.unvisible) {
-                            // 透明なダミーチャートを表示
-                            return (
-                                <div className='chart-card' style={{visibility: "hidden"}} key={'chart-card' + index}>
+                                <div className='chart-create-plus' key={'chart-create-plus' + index}>
+                                    <img src={chartplusImg} alt="add chart" onClick={() => this.prevPageChange(currentDisplayPageNumber)}/>
                                 </div>
-                            );
-                        } else {
-                            // 既存のチャートを表示
-                            return (
-                                <div className='chart-card'
-                                    onClick={() => {this.chartThumbnailOnClick(currentDisplayPageNumber * 6 + index)}}
-                                    key={'chart-card' + index}
-                                >
-                                    <div className='chart-card-tools'>
-                                        <div className='chart-name' style={{backgroundColor: task_ls.themeColor[chartItem.color]}} key={'chart-name' + index}>
-                                            <div className='chart-name-text' key={'chart-name-text' + index}>
-                                            {this.chartNameDisplay(chartItem.name)}
-                                            </div>
+                            </div>
+                        );
+                    } else if (chartItem.unvisible) {
+                        // 透明なダミーチャートを表示
+                        return (
+                            <div className='chart-card' style={{visibility: "hidden"}} key={'chart-card' + index}>
+                            </div>
+                        );
+                    } else {
+                        // 既存のチャートを表示
+                        return (
+                            <div className='chart-card'
+                                onClick={() => {this.chartThumbnailOnClick(currentDisplayPageNumber * 6 + index)}}
+                                key={'chart-card' + index}
+                            >
+                                <div className='chart-card-tools'>
+                                    <div className='chart-name' style={{backgroundColor: task_ls.themeColor[chartItem.color]}} key={'chart-name' + index}>
+                                        <div className='chart-name-text' key={'chart-name-text' + index}>
+                                        {this.chartNameDisplay(chartItem.name)}
                                         </div>
-                                        <div className='chart-edit'
-                                            onClick={() => {this.handleClickChartEdit(currentDisplayPageNumber, currentDisplayPageNumber * 6 + index)}}
-                                            key={'chart-edit' + index}
-                                        >
-                                                <img src={charteditImg} alt='edit chart' />
-                                        </div>
                                     </div>
-                                    <div className='chart-content' key={'chart-content' + index}>
-                                        {chartItem.content}
+                                    <div className='chart-edit'
+                                        onClick={() => {this.handleClickChartEdit(currentDisplayPageNumber, currentDisplayPageNumber * 6 + index)}}
+                                        key={'chart-edit' + index}
+                                    >
+                                            <img src={charteditImg} alt='edit chart' />
                                     </div>
                                 </div>
-                            );
-                        }
-                    })}
-                    </div>
-                {pageprev}
-                {pagenext}
-                {modal}
+                                <div className='chart-content' key={'chart-content' + index}>
+                                    {chartItem.content}
+                                </div>
+                            </div>
+                        );
+                    }
+                })}
                 </div>
-            );
-        }
-        else{
-            return (this.indivisual_task())
-        }
+            {pageprev}
+            {pagenext}
+            {modal}
+            </div>
+        );
+    }
+
+    // レンダリング：チャートの予定一覧
+    render_indivisualTask() {
+        let target = URLParams.get('task_class_name')
+        return (
+            <div>
+                <h1 className='title'>{target}の計画表</h1>
+            </div>
+        )
+    }
+
+    // チャート予定表：初期設定
+    chartThumbnailOnClick(index: number) {
+        URLParams.update('task_class_name', task_ls.tasks[index].name);
+        window.location.href = "/C_2212/tasks" + "?task_class_name=" + task_ls.tasks[index].name;
+        //this.setState({renderReload: true});
     }
 
     // ページ番号：前のページへ変更
@@ -188,7 +213,7 @@ class Tasks extends React.Component {
             "newChart": false,
             "unvisible": false 
         });
-        Tasks.update('task_class_name', task_ls.tasks[this.state.targetIndex].name)
+        URLParams.update('task_class_name', task_ls.tasks[this.state.targetIndex].name)
         this.setState({
             isChartCreate: false,
             targetIndex: null
@@ -218,7 +243,7 @@ class Tasks extends React.Component {
     handleClickChartEditSubmit(name: string) {
         task_ls.tasks[this.state.targetIndex].name = name;
         task_ls.tasks[this.state.targetIndex].color = this.state.currentColor;
-        Tasks.update('task_class_name', task_ls.tasks[this.state.targetIndex].name)
+        URLParams.update('task_class_name', task_ls.tasks[this.state.targetIndex].name)
         this.setState({
             isChartEdit: false,
             targetIndex: null
@@ -249,14 +274,6 @@ class Tasks extends React.Component {
         } else {
             return(name);
         }
-    }
-
-    // 既存チャートをクリックしたらクエリパラメータを追加
-    chartThumbnailOnClick(index: number) {
-        Tasks.update('task_class_name', task_ls.tasks[index].name)
-        console.log(Tasks.toObject());
-        this.indivisual_task()
-        location.reload()
     }
 
     // モーダル：チャート新規作成
@@ -386,48 +403,6 @@ class Tasks extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    indivisual_task() {
-        let target = Tasks.get('task_class_name')
-        return(
-            <div>
-                <h1 className='title'>{target}の計画表</h1>
-            </div>
-        )
-    }
-
-    // クエリパラメーターを作成・更新
-    static update(key: string, value?: string): boolean {
-        const params: any = this.toObject();
-        params[key] = value;
-        const url = "?" + Object.keys(params).map(
-            (key: string) => key + "=" + params[key]).join("&");
-        window.history.replaceState('', '', url);
-        window.history.pushState('', '', url);
-        return true;
-    }
-
-    // 指定したキーワードのクエリパラメータを取得
-    static get(key: string): string {
-        const params: any = this.toObject();
-        return params[key];
-    }
-
-    // クエリパラメータの一覧を連想配列で取得
-    static toObject(): Object {
-        let vars : any = {}, max: number, hash: any, array: any = "";
-        let url = window.location.search;
-        if (url.length === 0) {
-            return vars;
-        }
-        hash = url.slice(1).split('&');
-        max = hash.length;
-        for (let i = 0; i < max; i++) {
-            array = hash[i].split('=');
-            vars[array[0]] = array[1];
-        }
-        return vars;
     }
 }
 

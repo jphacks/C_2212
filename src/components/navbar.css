@@ -47,6 +47,7 @@
 }
 
 .navigation-tasks .navogation-task-title {
+    cursor: pointer;
     text-decoration: none;
     height: 60px;
     line-height: 60px;
