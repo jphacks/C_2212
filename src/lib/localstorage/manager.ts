@@ -45,23 +45,9 @@ export class LocalStorageManager {
         this.data = JSON.parse(localStorage.getItem("data") || "{}");
     }
 
-    private init(): void{
+    private init(): void {
         this.data = {
-            task_groups: [
-                {
-                    task_group_name: "dummy",
-                    color: 0,
-                    content: "",
-                    tasks: [
-                        {
-                            task_name: "",
-                            color: 0,
-                            scheduled_date: "10/20",
-                            deadline: "10/30"
-                        },
-                    ]
-                }
-            ]
+            task_groups: []
         };
     }
 
