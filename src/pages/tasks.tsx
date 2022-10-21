@@ -15,7 +15,6 @@ import { LocalStorageManager, TaskGroups } from "../lib/localstorage/manager";
 // Reack Hookをインポート
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 const lsmanager = new LocalStorageManager()
 
