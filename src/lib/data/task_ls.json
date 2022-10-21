@@ -1,46 +1,51 @@
 {
-    "tasks": [
+    "task_groups": [
         {
-            "name": "車校①",
-            "color": "#ff2442",
+            "task_group_name": "shakou 1",
+            "color": 0,
             "content": "テスト1",
-            "newFlag": false
+            "tasks": [
+                {
+                    "task_name": "学科１",
+                    "color": 0,
+                    "scheduled_date": "10/20",
+                    "deadline": "10/30"
+                },
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                },
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                }
+            ]
         },
         {
-            "name": "車校②",
-            "color": "#ffb01a",
-            "content": "あいあいあい",
-            "newFlag": false
+            "task_group_name": "shakou 2",
+            "color": 0,
+            "content": "テスト2",
+            "tasks": [
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                },
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                },
+                {
+                    "task_name": "車校①",
+                    "color": 0,
+                    "scheduled_date": "10/20"
+                }
+            ]
         },
-        {
-            "name": "テス勉",
-            "color": "#3db2ff",
-            "content": "コンテンツのテスト",
-            "newFlag": false
-        },
-        {
-            "name": "部活動",
-            "content": "",
-            "color": "#ffb01a",
-            "newFlag": false
-        },
-        {
-            "name": "旅行",
-            "content": "",
-            "color": "#3db2ff",
-            "newFlag": false
-        },
-        {
-            "name": "旅行②",
-            "content": "",
-            "color": "#ff2442",
-            "newFlag": false
-        },
-        {
-            "name": "旅行③",
-            "content": "",
-            "color": "#ff2466",
-            "newFlag": false
-        }
+        {}
     ]
 }
+

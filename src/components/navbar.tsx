@@ -1,9 +1,10 @@
 // Navbar.js
-
+import React from "react";
 
 import { Link } from "react-router-dom";
 import "./navbar.css";
-import task_ls from "../lib/data/task_ls.json"
+// import task_ls from "../lib/data/task_ls.json"
+import { localStorageManager } from "../lib/localstorage/manager";
 
 const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
   return (
@@ -20,9 +21,15 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
 };
 
 const Navbar = () => {
+
+  if (!localStorageManager) {
+    console.warn("lsmanager is undefined")
+    return <></>
+  }
+  const TaskData = localStorageManager.getData();
   let tasks_name = [];
-  for(let i=0;i !== task_ls.tasks.length;i++){
-    tasks_name[i] = task_ls.tasks[i].name
+  for(let i=0;i < TaskData.task_groups.length;i++){
+    tasks_name[i] = TaskData.task_groups[i].task_group_name;
   }
   return (
     <nav className="navigation">
@@ -44,7 +51,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navigation-tasks">
-        <div onClick={() => {window.location.href = "/C_2212/todolist";}} className="navogation-task-title">Tasks</div>
+        <div onClick={() => {window.location.href = "/C_2212/tasks";}} className="navogation-task-title">Tasks</div>
         <NavTaskList tasks={tasks_name} />
       </div>
     </nav>

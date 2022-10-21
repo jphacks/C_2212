@@ -1,9 +1,12 @@
+import Navbar from "../components/navbar";
+
 const Calendar = () => {
 	return (
-		<div>
+		<>
+			<Navbar />
 			<p>this is <b>Calendar</b> pages</p>
 			<p>カレンダーページ（ミニマムじゃないよ）</p>
-		</div>
+		</>
 	)
 }
 
