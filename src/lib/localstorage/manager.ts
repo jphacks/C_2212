@@ -12,8 +12,6 @@ export interface TaskGroup {
     task_group_name: string;
     color: number,
     content: string,
-    newChart: Boolean,
-    unvisible: Boolean,
     tasks: Task[];
 }
 
@@ -32,7 +30,7 @@ export class LocalStorageManager {
         if (!Object.keys(lsdata).length) {
             this.init();
             this.save();
-        } 
+        }
         else {
             this.data = lsdata as TaskGroups;
             this.save();
@@ -47,16 +45,25 @@ export class LocalStorageManager {
         this.data = JSON.parse(localStorage.getItem("data") || "{}");
     }
 
-    private init(): void{ // 新規作成用データを入れておく
+    private init(): void{
         this.data = {
             task_groups: [
                 {
-                    // 最初に新規作成のダミーチャートを表示
-                    task_group_name: "新規作成",
+                    task_group_name: "dummy",
                     color: 0,
                     content: "",
-                    newChart: true,
-                    unvisible: false,
+                    tasks: [
+                        {
+                            task_name: "",
+                            color: 0,
+                            scheduled_date: "10/20",
+                            deadline: "10/30"
+                        },
+                    ]
+                }, {
+                    task_group_name: "dummy2",
+                    color: 0,
+                    content: "",
                     tasks: [
                         {
                             task_name: "",

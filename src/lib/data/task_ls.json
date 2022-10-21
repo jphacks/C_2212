@@ -4,8 +4,6 @@
             "task_group_name": "shakou 1",
             "color": 0,
             "content": "テスト1",
-            "newChart": false,
-            "unvisible": false,
             "tasks": [
                 {
                     "task_name": "学科１",
@@ -29,8 +27,6 @@
             "task_group_name": "shakou 2",
             "color": 0,
             "content": "テスト2",
-            "newChart": false,
-            "unvisible": false,
             "tasks": [
                 {
                     "task_name": "車校①",
