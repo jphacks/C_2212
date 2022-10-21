@@ -1,22 +1,3 @@
-/*
-function choose(props: any) {
-    return ["10/23(Thu) FocusGold IA",]
-}
-
-// タグを表示する
-const TagPaper = (props: any) => {
-    let express = choose(props);
-    return (
-        <div className="tag_contents" >
-            {express.map((name, index) => {
-                if(name !== ""){
-                    return(<p>{name}</p>)
-                }
-            })}
-        </div>
-    )
-}
-*/
 
 // 付箋を表示する
 const TagPaper = ({chartItem}: {chartItem: any}) => {
@@ -27,10 +8,10 @@ const TagPaper = ({chartItem}: {chartItem: any}) => {
 
     // 付箋のカラーテーマ
     const themeColor = [
-        ["#F9D2D2", "#F8C0C0"], // 赤系統
+        ["#FAACAC", "#E87A7A"], // 赤系統
         ["#81BDCE", "#2994B2"], // 緑系統
         ["#FBE5B2", "#FFD36A"], // 黄系統
-        ["#EDEAE8", "#D5D2CF"], // 白系統
+        ["#E3E1E0", "#B8B4B0"], // 白系統
     ];
     
     for (let i = 0; i < displayTags && i < chartItem.tasks.length; i++) {
@@ -67,5 +48,6 @@ const TagPaper = ({chartItem}: {chartItem: any}) => {
         </div>
     );
 }
+
 
 export default TagPaper;

@@ -29,12 +29,14 @@ const Tasks: React.FC = () => {
     const [parms] = useSearchParams();
     const target = parms.get('task_class_name');
 
+    // テーマカラー
     const themeColor = [
-        "#ff2442",
-        "#ffb01a",
-        "#3db2ff",
-        "#2994b2"
+        "#FF8394",  // 赤系統
+        "#FFCC6B",  // 黄系統
+        "#6DB8EA",  // 青系統
+        "#6BBED6"   // 緑系統
     ]
+
     // ページ遷移
     const navigate = useNavigate()
     // useState
@@ -147,8 +149,7 @@ const Tasks: React.FC = () => {
             {target && <Diagram task_group_name={target} />}
             {!target && 
             <div className='chart-page'>
-                <h2 className='page-tree' style={{cursor: 'default'}}>Home 》チャート一覧</h2>
-                <h1 className='page-title' style={{cursor: 'default'}}>チャート一覧</h1>
+                <h1 className='page-title' style={{cursor: 'default'}}>タスク一覧 ＜ {currentDisplayPageNumber + 1} ページ目 / 全 {Math.ceil((chartsList.length + 1) / 6)} ページ中＞</h1>
                 <div className='chart-container'>
                     {formerList}
                     {latterList}
@@ -231,10 +232,10 @@ export const ModalNewChart = ({
 
     // テーマカラー
     const themeColor = [
-        "#ff2442",
-        "#ffb01a",
-        "#3db2ff",
-        "#2994b2"
+        "#FF8394",  // 赤系統
+        "#FFCC6B",  // 黄系統
+        "#6DB8EA",  // 青系統
+        "#6BBED6"   // 緑系統
     ]
 
     // カラーリストを表示
@@ -381,10 +382,10 @@ export const ModalEditChart = ({
 
     // テーマカラー
     const themeColor = [
-        "#ff2442",
-        "#ffb01a",
-        "#3db2ff",
-        "#2994b2"
+        "#FF8394",  // 赤系統
+        "#FFCC6B",  // 黄系統
+        "#6DB8EA",  // 青系統
+        "#6BBED6"   // 緑系統
     ]
 
     // カラーリストを表示
