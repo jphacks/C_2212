@@ -50,10 +50,10 @@ export class TaskNodeWidget extends React.Component<
 				</AdvancedPortWidget>
 				)}
 				<div className="task-node-content has-text-light">
-					<h1 className="task-node-title">{this.props.node.name}</h1>
+					<p className="task-node-title">{this.props.node.name}</p>
 					<ol className="task-node-detail">
 						<h1 className="expected_date">{this.props.node.scheduled_date}</h1>
-							<b>締切：</b>
+							<b className="deadline">締切：</b>
 							<b>{this.props.node.deadline}</b>
 					</ol>
 				</div>

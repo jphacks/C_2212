@@ -18,21 +18,28 @@
 
 .expected_date {
     width : 30%;
+    height: max-content;
     position: absolute;
     left: 0%;
-    top : -5%;
+    top : -10%;
     border-top-left-radius: 10%;
     font-size: 100%;
-    background-color: rgb(127, 236, 255);
+    color: white;
+    background-color: #7BCECC;
 }
 
 .task-node-content {
     background-color: white;
     border-radius: 5px;
+    box-shadow: 2px 2px 3px #99999A;
 }
 
 .task-node-title {
     font: bold;
     text-align: center;
-    padding-top: 0.5rem;
+    padding-top: 2.5rem;
+}
+
+.deadline {
+    color: #474744;
 }
