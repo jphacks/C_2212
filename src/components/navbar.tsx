@@ -25,7 +25,7 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
 const Navbar = () => {
 
   const navigate = useNavigate();
-  
+
   if (!localStorageManager) {
     console.warn("lsmanager is undefined")
     return <></>
@@ -54,7 +54,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navigation-tasks">
+      <div className="navigation-tasks" style={{cursor: 'pointer'}}>
         <div onClick={() => {navigate("/tasks");}} className="navogation-task-title">Tasks</div>
         <NavTaskList tasks={tasks_name} />
       </div>
