@@ -14,11 +14,10 @@ function App() {
 
   return (
     <Router basename={ROUTER_BASENAME}>
-      <Link to="/diagram">diagram</Link>
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/calendar" element={<Calendar/>}/>
-        <Route path="/diagram" element={<Diagram/>}/>
+        {/* <Route path="/diagram" element={<Diagram/>}/> */}
         <Route path="/tasks" element={<Tasks/>}/>
       </Routes> 
     </Router>

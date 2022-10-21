@@ -11,7 +11,7 @@ import { AdvancedPortFactory } from '../lib/port/factory';
 import Navbar from "../components/navbar";
 
 
-const Diagram = () => {
+const Diagram = ({task_group_name}: {task_group_name: string}) => {
 	//1) setup the diagram engine
 	var engine = createEngine();
 	engine.getLinkFactories().registerFactory(new AdvancedLinkFactory());
@@ -100,7 +100,7 @@ const Diagram = () => {
 	// render the diagram!
 	return (
 		<>
-			<Navbar />
+			<h2>{task_group_name}</h2>
 			<CanvasWidget className="diagram-container" engine={engine} />
 		</>
 	);

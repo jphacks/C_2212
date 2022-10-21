@@ -14,13 +14,21 @@ import { localStorageManager, LocalStorageManager, TaskGroups } from "../lib/loc
 
 // Reack Hookをインポート
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Navbar from "../components/navbar";
+import Diagram from "./diagram";
 
 const lsmanager = new LocalStorageManager()
 
-
 const Tasks: React.FC = () => {
+
+    const [parms] = useSearchParams();
+    const target = parms.get('task_class_name');
+    // if (!target) {
+    //     return (
+    //         <Diagram />
+    //     )
+    // }
 
     const themeColor = [
         "#ff2442",
@@ -134,6 +142,8 @@ const Tasks: React.FC = () => {
     return (
         <>
             <Navbar />
+            {target && <Diagram task_group_name={target} />}
+            {!target && 
             <div className='chart-page'>
                 <h2 className='page-tree'>Home 》チャート一覧</h2>
                 <h1 className='page-title'>チャート一覧</h1>
@@ -184,7 +194,7 @@ const Tasks: React.FC = () => {
                             onClick={() => setCurrentDisplayPageNumber(prev => prev + 1)} 
                             />
                     </div>}
-            </div>
+            </div>}
         </>
     );
 }
