@@ -2,6 +2,7 @@
 import React from "react";
 
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./navbar.css";
 // import task_ls from "../lib/data/task_ls.json"
 import { localStorageManager } from "../lib/localstorage/manager";
@@ -21,6 +22,7 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
 };
 
 const Navbar = () => {
+  const navigate = useNavigate();
 
   if (!localStorageManager) {
     console.warn("lsmanager is undefined")
@@ -51,7 +53,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navigation-tasks">
-        <div onClick={() => {window.location.href = "/C_2212/tasks";}} className="navogation-task-title">Tasks</div>
+        <div onClick={() => {navigate("/tasks");}} className="navogation-task-title">Tasks</div>
         <NavTaskList tasks={tasks_name} />
       </div>
     </nav>
