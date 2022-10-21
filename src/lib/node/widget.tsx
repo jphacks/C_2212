@@ -9,8 +9,21 @@ import { DiagramEngine } from "@projectstorm/react-diagrams";
 import React from "react";
 import { AdvancedPortWidget } from "../port/widget";
 import { TaskNodeModel } from "./model";
+import styled from '@emotion/styled';
 
 import "./node.css"
+
+
+export const Port = styled.div`
+	width: 10px;
+	height: 10px;
+	background-color: yellow;
+	border-radius: 50%;
+	transform: translate(-5px);
+	:hover {
+		background-color: red;
+	}
+`
 
 export interface TaskNodeWidgetProps {
 	node: TaskNodeModel;
@@ -37,7 +50,7 @@ export class TaskNodeWidget extends React.Component<
 					port={this.props.node.getPort("in")!}
 					className="task-port-in"
 				>
-					<div />
+					<Port />
 				</AdvancedPortWidget>
 				)}
 
@@ -47,7 +60,7 @@ export class TaskNodeWidget extends React.Component<
 					port={this.props.node.getPort("out")!}
 					className="task-port-out"
 				>
-					<div />
+					<Port />
 				</AdvancedPortWidget>
 				)}
 				<div className="task-node-content has-text-light">

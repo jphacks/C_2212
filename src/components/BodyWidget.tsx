@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as _ from 'lodash';
+// import * as _ from 'lodash';
 // import { Application } from '../Application';
 // import { DefaultNodeModel } from '@projectstorm/react-diagrams';
 import { CanvasWidget } from '@projectstorm/react-canvas-core';
