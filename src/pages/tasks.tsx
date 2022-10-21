@@ -87,7 +87,11 @@ const Tasks: React.FC = () => {
                 key={'chart-card' + i}
             >
                 <div className='chart-card-tools'>
-                    <div className='chart-name' style={{backgroundColor: themeColor[displayCharts[i].color]}} key={'chart-name' + i}>
+                    <div className='chart-name'
+                         style={{backgroundColor: themeColor[displayCharts[i].color]}}
+                         title={displayCharts[i].task_group_name}
+                         key={'chart-name' + i}
+                    >
                         <div className='chart-name-text'>
                         {chartNameDisplay(displayCharts[i].task_group_name)}
                         </div>
