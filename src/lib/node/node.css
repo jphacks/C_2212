@@ -1,6 +1,8 @@
 
 .task-node {
     position: relative;
+    background-color: white;
+    border-radius: 5px;
 }
 
 
@@ -16,30 +18,42 @@
     left: 100%;
 }
 
-.expected_date {
+.deadline {
     width : 30%;
     height: max-content;
     position: absolute;
     left: 0%;
-    top : -10%;
     border-top-left-radius: 10%;
     font-size: 100%;
+    font-weight: 200 1000px;
+    bottom: 0%;
+}
+
+.expected_date {
     color: white;
-    background-color: #7BCECC;
+    width : 22%;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    margin-top: 0%;
+    border-top-left-radius: 10%;
+    font-size: 100%;
+    background-color: #ACBF38;
 }
 
 .task-node-content {
-    background-color: white;
     border-radius: 5px;
     box-shadow: 2px 2px 3px #99999A;
+    border-left: 3.6rem solid #59d096;
+    height: 25vh;
 }
 
 .task-node-title {
     font: bold;
     text-align: center;
-    padding-top: 2.5rem;
+    /* padding-top: 2.5rem; */
 }
 
-.deadline {
-    color: #474744;
+.task_detail {
+    font-size: 50%;
 }
