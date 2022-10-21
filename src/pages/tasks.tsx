@@ -1,7 +1,8 @@
 import React from "react";
 
 // CSSをインポート
-import "./tasks.css";
+import "./tasks.css";                   // tasksのCSS
+import "../components/tagpaper.css";    // 付箋のCSS
 
 //  画像ファイルをインポート
 import pageprevImg from '../images/pageprev.png';
@@ -15,6 +16,9 @@ import { localStorageManager, LocalStorageManager, TaskGroups } from "../lib/loc
 // Reack Hookをインポート
 import { useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom";
+
+// コンポーネントをインポート
+import TagPaper from "../components/tagpaper";
 import Navbar from "../components/navbar";
 import Diagram from "./diagram";
 
@@ -24,11 +28,6 @@ const Tasks: React.FC = () => {
 
     const [parms] = useSearchParams();
     const target = parms.get('task_class_name');
-    // if (!target) {
-    //     return (
-    //         <Diagram />
-    //     )
-    // }
 
     const themeColor = [
         "#ff2442",
@@ -88,7 +87,11 @@ const Tasks: React.FC = () => {
                 key={'chart-card' + i}
             >
                 <div className='chart-card-tools'>
-                    <div className='chart-name' style={{backgroundColor: themeColor[displayCharts[i].color]}} key={'chart-name' + i}>
+                    <div className='chart-name'
+                         style={{backgroundColor: themeColor[displayCharts[i].color]}}
+                         title={displayCharts[i].task_group_name}
+                         key={'chart-name' + i}
+                    >
                         <div className='chart-name-text'>
                         {chartNameDisplay(displayCharts[i].task_group_name)}
                         </div>
@@ -103,9 +106,7 @@ const Tasks: React.FC = () => {
                             <img src={charteditImg} alt='edit chart' />
                     </div>
                 </div>
-                <div className='chart-content' key={'chart-content' + i}>
-                    {displayCharts[i].content}
-                </div>
+                {<TagPaper chartItem={displayCharts[i]} />}
             </div>
         );
     }
@@ -146,8 +147,8 @@ const Tasks: React.FC = () => {
             {target && <Diagram task_group_name={target} />}
             {!target && 
             <div className='chart-page'>
-                <h2 className='page-tree'>Home 》チャート一覧</h2>
-                <h1 className='page-title'>チャート一覧</h1>
+                <h2 className='page-tree' style={{cursor: 'default'}}>Home 》チャート一覧</h2>
+                <h1 className='page-title' style={{cursor: 'default'}}>チャート一覧</h1>
                 <div className='chart-container'>
                     {formerList}
                     {latterList}

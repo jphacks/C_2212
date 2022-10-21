@@ -1,4 +1,4 @@
-
+import task_JSON from "../data/task_ls.json";
 
 export interface Task {
     task_name: string;
@@ -12,7 +12,7 @@ export interface TaskGroup {
     task_group_name: string;
     color: number,
     content: string,
-    tasks: Task[];
+    tasks: []
 }
 
 export interface TaskGroups {
@@ -46,11 +46,8 @@ export class LocalStorageManager {
     }
 
     private init(): void {
-        this.data = {
-            task_groups: []
-        };
+        this.data = task_JSON as TaskGroups;    // 「task_ls.json」JSONファイルで初期化(デバッグ用)
     }
-
     
     public getData(): TaskGroups {
         this.sync();
