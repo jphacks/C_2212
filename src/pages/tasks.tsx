@@ -113,6 +113,7 @@ const Tasks: React.FC = () => {
     // チャートリストの最後に新規作成＆透明なダミーチャートを挿入 (画面表示を整える)
     const latterList : any = []; // 後半部分専用のリスト
 
+
     for (let i = 0; (formerList.length + latterList.length) % chartsOnePageShow > 0 || (formerList.length + latterList.length) === 0; i++) {
         if (i === 0) {
             latterList.push(
@@ -267,12 +268,14 @@ export const ModalNewChart = ({
         })
         setIsChartCreate(false);
         setTargetIndex(-1);
+        setInputValue("");
     }
 
     // チャート新規作成：やめる
     const handleClickChartClose = () => {
         setIsChartCreate(false);
         setTargetIndex(-1);
+        setInputValue("");
     }
 
     // エラーメッセージを表示
@@ -416,6 +419,7 @@ export const ModalEditChart = ({
         })
         setIsChartEdit(false);
         setTargetIndex(-1);
+        setInputValue("");
     }
 
     // チャート情報編集：削除する
@@ -429,11 +433,13 @@ export const ModalEditChart = ({
         })
         setIsChartEdit(false);
         setTargetIndex(-1);
+        setInputValue("");
     }
 
     const handleClickChartEditClose = () => {
         setIsChartEdit(false);
         setTargetIndex(-1);
+        setInputValue("");
     }
 
     // エラーメッセージを表示
