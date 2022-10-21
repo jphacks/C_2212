@@ -50,7 +50,7 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navigation-tasks">
+      <div className="navigation-tasks" style={{cursor: 'pointer'}}>
         <div onClick={() => {window.location.href = "/C_2212/tasks";}} className="navogation-task-title">Tasks</div>
         <NavTaskList tasks={tasks_name} />
       </div>
