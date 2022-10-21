@@ -37,25 +37,40 @@ namespace S {
 		position: relative;
 		flex-grow: 1;
 	`;
+
+	export const Bottun = styled.div`
+		cursor: pointer;
+		position: absolute;
+		z-index: 10;
+		background-color: #F8C0C0;
+		width: 80px;
+		text-align: center;
+		font-size: 600%;
+		height: 80px;
+		line-height: 50%;
+		color: white;
+		box-shadow: 0 10px 10px #333;
+		:hover {
+		color: black;
+		box-shadow: none;
+		  }
+	`;
 }
+
 
 export class BodyWidget extends React.Component<BodyWidgetProps> {
 	render() {
 		return (
 			<S.Body>
 				<S.Content>
-					<div 
-					style={{
-						cursor: "pointer",
-						position: "absolute",
-						zIndex: 10,
+					<S.Bottun
+					draggable={true}
+					onDragStart={(event) => {
+					event.dataTransfer.setData('storm-diagram-node', JSON.stringify({type: 'in-out'}));
 					}}
-						draggable={true}
-						onDragStart={(event) => {
-						event.dataTransfer.setData('storm-diagram-node', JSON.stringify({type: 'in-out'}));
-						}}
-						className="tray-item"
-					>aaaa</div>
+					>
+					+
+					</S.Bottun>
 					<S.Layer
 						onDrop={(event) => {
 							let data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
