@@ -8,7 +8,6 @@ import { TaskNodeModel } from '../lib/node/model';
 import { AdvancedLinkModel } from '../lib/link/model';
 import { AdvancedLinkFactory } from '../lib/link/factory';
 import { AdvancedPortFactory } from '../lib/port/factory';
-import Navbar from "../components/navbar";
 
 
 const Diagram = ({task_group_name}: {task_group_name: string}) => {
