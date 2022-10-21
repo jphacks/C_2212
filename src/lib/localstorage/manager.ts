@@ -28,6 +28,7 @@ export class LocalStorageManager {
 
     constructor() {
         const lsdata = JSON.parse(localStorage.getItem("data") || "{}");
+        console.log("load", lsdata);
         if (!Object.keys(lsdata).length) {
             this.init();
             this.save();
@@ -46,10 +47,11 @@ export class LocalStorageManager {
         this.data = {
             task_groups: [
                 {
-                    task_group_name: "dummy",
+                    // 最初に新規作成のダミーチャートを表示
+                    task_group_name: "新規作成",
                     color: 0,
                     content: "",
-                    newChart: false,
+                    newChart: true,
                     unvisible: false,
                     tasks: [
                         {

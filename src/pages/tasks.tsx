@@ -1,27 +1,38 @@
-import "./tasks.css";
 import React from "react";
 
+// CSSをインポート
+import "./tasks.css";
+
+//  画像ファイルをインポート
 import pageprevImg from '../images/pageprev.png';
 import pagenextImg from '../images/pagenext.png';
 import chartplusImg from '../images/chartplus.png';
 import charteditImg from '../images/chartedit.png';
 
+// ローカルストレージをインポート
 import { LocalStorageManager, TaskGroups } from "../lib/localstorage/manager";
 
+// Reack Hookをインポート
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { wait } from "@testing-library/user-event/dist/utils";
 
+// チャート一覧画面
 const Tasks: React.FC = () => {
 
+    // 色々初期化
+    // ローカルストレージ
     const lsmanager = new LocalStorageManager()
+    // テーマカラー
     const themeColor = [
         "#ff2442",
         "#ffb01a",
         "#3db2ff",
         "#2994b2"
     ]
+    // ページ遷移
     const navigate = useNavigate()
-
+    // useState
     const [taskData, setTaskData] = useState<TaskGroups>(lsmanager.getData());
     const [currentDisplayPageNumber, setCurrentDisplayPageNumber] = useState<number>(0);
     const [currentColor, setCurrentColor] = useState<number>(0);
@@ -29,13 +40,16 @@ const Tasks: React.FC = () => {
     const [isChartCreate, setIsChartCreate] = useState<Boolean>(false);
     const [isChartEdit, setIsChartEdit] = useState<Boolean>(false);
     const [inputValue, setInputValue] = useState<string>("");
-
+    
+    // チャート新規作成：初期設定
     const handleClickChartCreate = (page: number, index: number) => {
         setCurrentDisplayPageNumber(page);
         setCurrentColor(0);
         setTargetIndex(index);
         setIsChartCreate(true);
     }
+
+    // チャート情報編集：初期設定
     const handleClickChartEdit = (page: number, index: number) => {
         setCurrentDisplayPageNumber(page);
         setCurrentColor(taskData.task_groups[index].color)
@@ -43,6 +57,8 @@ const Tasks: React.FC = () => {
         setIsChartEdit(true);
         setInputValue(taskData.task_groups[index].task_group_name)
     }
+
+    // チャート名表示方法
     const chartNameDisplay = (name: string) => {
         if (name.length >= 7) {
             return (name.substring(0, 6) + '…');
@@ -51,25 +67,26 @@ const Tasks: React.FC = () => {
         }
     }
 
+    // チャートデータを読み込み
     
     const chartList = taskData.task_groups;
     const chartsCount = chartList.length;
-    
-    // ページ送り
+    const chartsOnePageShow = 6; // １ページに表示するチャートの個数
 
-
-    for (let i = 0; chartList.length % 6 !== 0; i++) {
+    // チャートリストの最後に透明なダミーチャートを挿入 (画面表示を整える)
+    for (let i = 0; chartList.length % chartsOnePageShow !== 0; i++) {
         chartList.push({
             "task_group_name": "",
             "color": 0,
             "content": "",
             "newChart": false,
-            "unvisible": false,
+            "unvisible": true,
             "tasks": []
         });
     }
 
-    const displayCharts = chartList.slice(currentDisplayPageNumber * 6, currentDisplayPageNumber * 6 + 6);
+    // 表示するチャートを切り出し
+    const displayCharts = chartList.slice(currentDisplayPageNumber * chartsOnePageShow, (currentDisplayPageNumber + 1) * chartsOnePageShow);
 
     // 最終レンダリング
     return (
@@ -77,26 +94,26 @@ const Tasks: React.FC = () => {
         <h2 className='page-tree'>Home 》チャート一覧</h2>
         <h1 className='page-title'>チャート一覧</h1>
             <div className='chart-container'>
-            {displayCharts.map((chartItem, index) => {
+            {displayCharts.map((chartItem, targetIndex) => {
                 if (chartItem.newChart) {
                     // 新規作成チャートを表示
                     return (
                         <div className='chart-create'
-                                onClick={() => {handleClickChartCreate(currentDisplayPageNumber, currentDisplayPageNumber * 6 + index)}}
-                                key={'chart-create' + index}
+                                onClick={() => {handleClickChartCreate(currentDisplayPageNumber, currentDisplayPageNumber * chartsOnePageShow + targetIndex)}}
+                                key={'chart-create' + targetIndex}
                         >
-                            <div className='chart-create-text' key={'chart-create-text' + index}>
+                            <div className='chart-create-text' key={'chart-create-text' + targetIndex}>
                                 新規作成
                             </div>
-                            <div className='chart-create-plus' key={'chart-create-plus' + index}>
-                                <img src={chartplusImg} alt="add chart" onClick={() => setCurrentDisplayPageNumber((prev) => { return prev - 1})}/>
+                            <div className='chart-create-plus' key={'chart-create-plus' + targetIndex}>
+                                <img src={chartplusImg} alt="add chart" />
                             </div>
                         </div>
                     );
                 } else if (chartItem.unvisible) {
                     // 透明なダミーチャートを表示
                     return (
-                        <div className='chart-card' style={{visibility: "hidden"}} key={'chart-card' + index}>
+                        <div className='chart-card' style={{visibility: "hidden"}} key={'chart-card' + targetIndex}>
                         </div>
                     );
                 } else {
@@ -104,22 +121,22 @@ const Tasks: React.FC = () => {
                     return (
                         <div className='chart-card'
                                 onClick={() => {navigate(`/tasks?task_class_name=${chartItem.task_group_name}`)}}
-                                key={'chart-card' + index}
+                                key={'chart-card' + targetIndex}
                         >
                             <div className='chart-card-tools'>
-                                <div className='chart-name' style={{backgroundColor: themeColor[chartItem.color]}} key={'chart-name' + index}>
-                                    <div className='chart-name-text' key={'chart-name-text' + index}>
+                                <div className='chart-name' style={{backgroundColor: themeColor[chartItem.color]}} key={'chart-name' + targetIndex}>
+                                    <div className='chart-name-text' key={'chart-name-text' + targetIndex}>
                                     {chartNameDisplay(chartItem.task_group_name)}
                                     </div>
                                 </div>
                                 <div className='chart-edit'
-                                        onClick={() => {handleClickChartEdit(currentDisplayPageNumber, currentDisplayPageNumber * 6 + index)}}
-                                        key={'chart-edit' + index}
+                                        onClick={() => {handleClickChartEdit(currentDisplayPageNumber, currentDisplayPageNumber * chartsOnePageShow + targetIndex)}}
+                                        key={'chart-edit' + targetIndex}
                                 >
                                         <img src={charteditImg} alt='edit chart' />
                                 </div>
                             </div>
-                            <div className='chart-content' key={'chart-content' + index}>
+                            <div className='chart-content' key={'chart-content' + targetIndex}>
                                 {chartItem.content}
                             </div>
                         </div>
@@ -127,6 +144,7 @@ const Tasks: React.FC = () => {
                 }
             })}
             </div>
+        {/* モーダル：チャート新規作成 */}
         {isChartCreate && 
             <ModalNewChart 
                 currentColor={currentColor}
@@ -137,6 +155,7 @@ const Tasks: React.FC = () => {
                 setIsChartCreate={setIsChartCreate}
                 setTargetIndex={setTargetIndex}
                  />}
+        {/* モーダル：チャート情報編集 */}
         {isChartEdit && 
             <ModalEditChart 
                 currentColor={currentColor}
@@ -146,20 +165,22 @@ const Tasks: React.FC = () => {
                 setInputValue={setInputValue}
                 setIsChartEdit={setIsChartEdit}
                 setTargetIndex={setTargetIndex} />}
+        {/* 前のページボタン */}
         {currentDisplayPageNumber > 0 && 
         <div className='chart-pageprev'>
             <img 
                 src={pageprevImg} 
                 alt="prev page"
-                onClick={() => setCurrentDisplayPageNumber((prev) => { return prev - 1})} 
+                onClick={() => setCurrentDisplayPageNumber(prev => prev - 1)} 
                 />
             </div>}
-        {currentDisplayPageNumber * 6 + 6 < chartsCount && 
+        {/* 次のページボタン */}
+        {(currentDisplayPageNumber + 1) * chartsOnePageShow < chartsCount && 
             <div className='chart-pagenext'>
             <img 
                 src={pagenextImg} 
                 alt="next page" 
-                onClick={() => setCurrentDisplayPageNumber((prev) => { return prev + 1})} 
+                onClick={() => setCurrentDisplayPageNumber(prev => prev + 1)} 
                 />
             </div>}
         </div>
@@ -170,8 +191,10 @@ const Tasks: React.FC = () => {
 export default Tasks
 
 
-
+// モーダル：チャート新規作成
 export const ModalNewChart = ({
+
+    // 引数の型宣言
     currentColor,
     inputValue,
     setTaskData,
@@ -187,6 +210,8 @@ export const ModalNewChart = ({
     setIsChartCreate: (isChartCreate: Boolean) => void,
     setTargetIndex: (targetIndex: number) => void
 }) => {
+
+    // テーマカラー
     const themeColor = [
         "#ff2442",
         "#ffb01a",
@@ -194,27 +219,27 @@ export const ModalNewChart = ({
         "#2994b2"
     ]
 
-
-
-    const colorList = themeColor.map((color, index) => {
-        return (currentColor === index ? 
+    // カラーリストを表示
+    const colorList = themeColor.map((_, targetIndex) => {
+        return (currentColor === targetIndex ? 
             (<div className="modal-chart-color-select"
-                onClick={() => {setCurrentColor(index)}}
-                style={{backgroundColor: themeColor[index]}}
-                key={'chart-content' + index}
+                onClick={() => {setCurrentColor(targetIndex)}}
+                style={{backgroundColor: themeColor[targetIndex]}}
+                key={'chart-content' + targetIndex}
                 >&nbsp;</div>) : 
             (<div className="modal-chart-color-unselect"
-                onClick={() => {setCurrentColor(index)}}
-                style={{backgroundColor: themeColor[index]}}
-                key={'chart-content' + index}
+                onClick={() => {setCurrentColor(targetIndex)}}
+                style={{backgroundColor: themeColor[targetIndex]}}
+                key={'chart-content' + targetIndex}
                 >&nbsp;</div>)
         )}
     )
     
+    // チャート新規作成：作成完了
     const handleClickChartCreateSubmit = (name: string) => {
-        setTaskData((prevState) => {
+        setTaskData((prev) => {
             return {
-                ...prevState,
+                ...prev,
                 task_groups: [{
                     task_group_name: name, // HACK: 同じ名前を登録してしまうと前のやつが上書きされてしまう
                     color: currentColor,
@@ -223,14 +248,17 @@ export const ModalNewChart = ({
                     unvisible: false,
                     tasks: []
                 }]
-            } 
+            }
         })
     }
+
+    // チャート新規作成：やめる
     const handleClickChartClose = () => {
         setIsChartCreate(false);
         setTargetIndex(-1);
     }
 
+    // レンダリング
     return (
         <div className='modal'>
             <div className='modal-inner'>
@@ -269,8 +297,10 @@ export const ModalNewChart = ({
 }
 
 
-
+// モーダル：チャート情報編集
 export const ModalEditChart = ({
+
+    // 引数の型指定
     currentColor,
     inputValue,
     setTaskData,
@@ -286,27 +316,32 @@ export const ModalEditChart = ({
     setIsChartEdit: (isChartCreate: Boolean) => void,
     setTargetIndex: (targetIndex: number) => void
 }) => {
+
+    // テーマカラー
     const themeColor = [
         "#ff2442",
         "#ffb01a",
         "#3db2ff",
         "#2994b2"
     ]
-    const colorList = themeColor.map((color, index) => {
-        return (currentColor === index ? 
-            (<div className="modal-chart-color-select"
-                onClick={() => { setCurrentColor(index) }}
-                style={{ backgroundColor: themeColor[index] }}
-                key={'chart-content' + index}
-            >&nbsp;</div>) : 
-            (<div className="modal-chart-color-unselect"
-                onClick={() => { setCurrentColor(index) }}
-                style={{ backgroundColor: themeColor[index] }}
-                key={'chart-content' + index}
-            >&nbsp;</div>)
-        )
-    })
 
+    // カラーリストを表示
+    const colorList = themeColor.map((_, targetIndex) => {
+        return (currentColor === targetIndex ? 
+            (<div className="modal-chart-color-select"
+                onClick={() => {setCurrentColor(targetIndex)}}
+                style={{backgroundColor: themeColor[targetIndex]}}
+                key={'chart-content' + targetIndex}
+                >&nbsp;</div>) : 
+            (<div className="modal-chart-color-unselect"
+                onClick={() => {setCurrentColor(targetIndex)}}
+                style={{backgroundColor: themeColor[targetIndex]}}
+                key={'chart-content' + targetIndex}
+                >&nbsp;</div>)
+        )}
+    )
+
+    // チャート情報編集：編集完了
     const handleClickChartEditSubmit = (name: string) => {
         setTaskData((prevState) => {
             return Object.assign(prevState, {task_groups: [{
@@ -318,6 +353,7 @@ export const ModalEditChart = ({
         setTargetIndex(-1);
     }
 
+    // チャート情報編集：削除する
     const handleClickChartDelete = () => {
         // TODO: タスクの削除機能を作る
         setIsChartEdit(false);
@@ -329,6 +365,7 @@ export const ModalEditChart = ({
         setTargetIndex(-1);
     }
 
+    // レンダリング
     return (
         <div className='modal'>
             <div className='modal-inner'>
