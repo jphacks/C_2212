@@ -8,6 +8,7 @@ import { TaskNodeModel } from '../lib/node/model';
 import { AdvancedLinkModel } from '../lib/link/model';
 import { AdvancedLinkFactory } from '../lib/link/factory';
 import { AdvancedPortFactory } from '../lib/port/factory';
+import Navbar from "../components/navbar";
 
 
 const Diagram = () => {
@@ -98,7 +99,10 @@ const Diagram = () => {
 
 	// render the diagram!
 	return (
-		<CanvasWidget className="diagram-container" engine={engine} />
+		<>
+			<Navbar />
+			<CanvasWidget className="diagram-container" engine={engine} />
+		</>
 	);
 };
 

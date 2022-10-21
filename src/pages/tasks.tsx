@@ -15,6 +15,7 @@ import { LocalStorageManager, TaskGroups } from "../lib/localstorage/manager";
 // Reack Hookをインポート
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/navbar";
 
 const lsmanager = new LocalStorageManager()
 
@@ -131,57 +132,60 @@ const Tasks: React.FC = () => {
 
     // 最終レンダリング
     return (
-        <div className='chart-page'>
-        <h2 className='page-tree'>Home 》チャート一覧</h2>
-        <h1 className='page-title'>チャート一覧</h1>
-            <div className='chart-container'>
-                {formerList}
-                {latterList}
+        <>
+            <Navbar />
+            <div className='chart-page'>
+                <h2 className='page-tree'>Home 》チャート一覧</h2>
+                <h1 className='page-title'>チャート一覧</h1>
+                <div className='chart-container'>
+                    {formerList}
+                    {latterList}
+                </div>
+                {/* モーダル：チャート新規作成 */}
+                {isChartCreate && 
+                    <ModalNewChart 
+                        currentColor={currentColor}
+                        inputValue={inputValue}
+                        targetIndex={targetIndex}
+                        taskData={taskData}
+                        setTaskData={setTaskData}
+                        setCurrentColor={setCurrentColor}
+                        setInputValue={setInputValue}
+                        setIsChartCreate={setIsChartCreate}
+                        setTargetIndex={setTargetIndex}
+                        />}
+                {/* モーダル：チャート情報編集 */}
+                {isChartEdit && 
+                    <ModalEditChart
+                        currentColor={currentColor}
+                        inputValue={inputValue}
+                        targetIndex={targetIndex}
+                        taskData={taskData}
+                        setTaskData={setTaskData}
+                        setCurrentColor={setCurrentColor}
+                        setInputValue={setInputValue}
+                        setIsChartEdit={setIsChartEdit}
+                        setTargetIndex={setTargetIndex} />}
+                {/* 前のページボタン */}
+                {currentDisplayPageNumber > 0 && 
+                    <div className='chart-pageprev'>
+                        <img 
+                            src={pageprevImg} 
+                            alt="prev page"
+                            onClick={() => setCurrentDisplayPageNumber(prev => prev - 1)} 
+                            />
+                    </div>}
+                {/* 次のページボタン */}
+                {(currentDisplayPageNumber + 1) * chartsOnePageShow < (chartsList.length + 1) && 
+                    <div className='chart-pagenext'>
+                        <img 
+                            src={pagenextImg} 
+                            alt="next page" 
+                            onClick={() => setCurrentDisplayPageNumber(prev => prev + 1)} 
+                            />
+                    </div>}
             </div>
-        {/* モーダル：チャート新規作成 */}
-        {isChartCreate && 
-            <ModalNewChart 
-                currentColor={currentColor}
-                inputValue={inputValue}
-                targetIndex={targetIndex}
-                taskData={taskData}
-                setTaskData={setTaskData}
-                setCurrentColor={setCurrentColor}
-                setInputValue={setInputValue}
-                setIsChartCreate={setIsChartCreate}
-                setTargetIndex={setTargetIndex}
-                 />}
-        {/* モーダル：チャート情報編集 */}
-        {isChartEdit && 
-            <ModalEditChart
-                currentColor={currentColor}
-                inputValue={inputValue}
-                targetIndex={targetIndex}
-                taskData={taskData}
-                setTaskData={setTaskData}
-                setCurrentColor={setCurrentColor}
-                setInputValue={setInputValue}
-                setIsChartEdit={setIsChartEdit}
-                setTargetIndex={setTargetIndex} />}
-        {/* 前のページボタン */}
-        {currentDisplayPageNumber > 0 && 
-            <div className='chart-pageprev'>
-                <img 
-                    src={pageprevImg} 
-                    alt="prev page"
-                    onClick={() => setCurrentDisplayPageNumber(prev => prev - 1)} 
-                    />
-            </div>}
-        {/* 次のページボタン */}
-        {(currentDisplayPageNumber + 1) * chartsOnePageShow < (chartsList.length + 1) && 
-            <div className='chart-pagenext'>
-                <img 
-                    src={pagenextImg} 
-                    alt="next page" 
-                    onClick={() => setCurrentDisplayPageNumber(prev => prev + 1)} 
-                    />
-            </div>}
-        </div>
+        </>
     );
 }
 
@@ -246,7 +250,9 @@ export const ModalNewChart = ({
                 content: "",
                 tasks: []
             });
-            alert(JSON.stringify(prevState["task_groups"]));
+            // alert(JSON.stringify(prevState["task_groups"]));
+            lsmanager.update(prevState);
+            console.log(lsmanager.getData())
             return prevState;
         })
         setIsChartCreate(false);
@@ -393,7 +399,9 @@ export const ModalEditChart = ({
                 }
                 return(value);
             });
-            alert(JSON.stringify(prevState["task_groups"]));
+            // alert(JSON.stringify(prevState["task_groups"]));
+            lsmanager.update(prevState);
+            console.log(lsmanager.getData())
             return prevState;
         })
         setIsChartEdit(false);
@@ -492,3 +500,4 @@ export const ModalEditChart = ({
         </div>
     );
 }
+

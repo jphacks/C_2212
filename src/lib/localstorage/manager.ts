@@ -60,18 +60,6 @@ export class LocalStorageManager {
                             deadline: "10/30"
                         },
                     ]
-                }, {
-                    task_group_name: "dummy2",
-                    color: 0,
-                    content: "",
-                    tasks: [
-                        {
-                            task_name: "",
-                            color: 0,
-                            scheduled_date: "10/20",
-                            deadline: "10/30"
-                        },
-                    ]
                 }
             ]
         };
@@ -83,9 +71,14 @@ export class LocalStorageManager {
         return this.data;
     }
 
-    public set(updateData: (prev: TaskGroups) => TaskGroups) {
+    public set(updateData: (prev: TaskGroups) => TaskGroups): void {
         this.sync();
         this.data = updateData(this.data);
+        this.save();
+    }
+
+    public update(newData: TaskGroups): void {
+        this.data  = newData;
         this.save();
     }
 
@@ -93,8 +86,10 @@ export class LocalStorageManager {
     public clear(): void {
         this.init();
     }
-
-
 }
+
+
+export const localStorageManager = new LocalStorageManager();
+
 
 
