@@ -10,7 +10,7 @@ import chartplusImg from '../images/chartplus.png';
 import charteditImg from '../images/chartedit.png';
 
 // ローカルストレージをインポート
-import { LocalStorageManager, TaskGroups } from "../lib/localstorage/manager";
+import { localStorageManager, LocalStorageManager, TaskGroups } from "../lib/localstorage/manager";
 
 // Reack Hookをインポート
 import { useState } from "react"
@@ -409,9 +409,12 @@ export const ModalEditChart = ({
     }
 
     // チャート情報編集：削除する
-    const handleClickChartDelete = () => {
+    const handleClickChartDelete = (task_group_name: string) => {
+        console.log(task_group_name)
         setTaskData((prevState) => {
-            prevState["task_groups"].splice(targetIndex, 1);
+            prevState.task_groups = prevState.task_groups.filter((task_group) => task_group.task_group_name !== task_group_name);
+            console.log(prevState)
+            localStorageManager.update(prevState);
             return prevState;
         })
         setIsChartEdit(false);
@@ -489,7 +492,7 @@ export const ModalEditChart = ({
                         }}>
                         変更する
                     </button>
-                    <button className='modal-delete-btn' onClick={() => { handleClickChartDelete() }}>
+                    <button className='modal-delete-btn' onClick={() => { handleClickChartDelete(inputValue) }}>
                         削除する
                     </button>
                     <button className='modal-close-btn' onClick={() => { handleClickChartEditClose() }}>
