@@ -70,7 +70,8 @@ const Tasks: React.FC = () => {
     const chartsCount = chartList.length;
     const chartsOnePageShow = 6; // １ページに表示するチャートの個数
 
-    // チャートリストの最後に透明なダミーチャートを挿入 (画面表示を整える)
+    // チャートリストの最後に透明なダミーチャートを挿入 (画面表示を整える) 
+    // HACK: pushするのではなく、レンダリングの際に必要なだけ表示するようにすればよい
     for (let i = 0; chartList.length % chartsOnePageShow !== 0; i++) {
         chartList.push({
             "task_group_name": "",
