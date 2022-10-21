@@ -3,7 +3,7 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 import "./navbar.css";
-import task_ls from "../lib/data/task_ls.json"
+// import task_ls from "../lib/data/task_ls.json"
 import { LocalStorageManager } from "../lib/localstorage/manager";
 
 const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
@@ -22,7 +22,12 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
 
 const Navbar = () => {
 
-  const TaskData = new LocalStorageManager().getData();
+  const lsmanager = new LocalStorageManager();
+  if (!lsmanager) {
+    console.warn("lsmanager is undefined")
+    return <></>
+  }
+  const TaskData = lsmanager.getData();
   let tasks_name = [];
   for(let i=0;i < TaskData.task_groups.length;i++){
     tasks_name[i] = TaskData.task_groups[i].task_group_name;

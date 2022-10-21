@@ -17,13 +17,11 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { wait } from "@testing-library/user-event/dist/utils";
 
-// チャート一覧画面
+const lsmanager = new LocalStorageManager()
+
+
 const Tasks: React.FC = () => {
 
-    // 色々初期化
-    // ローカルストレージ
-    const lsmanager = new LocalStorageManager()
-    // テーマカラー
     const themeColor = [
         "#ff2442",
         "#ffb01a",
@@ -94,26 +92,30 @@ const Tasks: React.FC = () => {
         <h2 className='page-tree'>Home 》チャート一覧</h2>
         <h1 className='page-title'>チャート一覧</h1>
             <div className='chart-container'>
-            {displayCharts.map((chartItem, targetIndex) => {
+            {displayCharts.map((chartItem, index) => {
                 if (chartItem.newChart) {
                     // 新規作成チャートを表示
                     return (
                         <div className='chart-create'
-                                onClick={() => {handleClickChartCreate(currentDisplayPageNumber, currentDisplayPageNumber * chartsOnePageShow + targetIndex)}}
-                                key={'chart-create' + targetIndex}
+                                onClick={() => {handleClickChartCreate(currentDisplayPageNumber, currentDisplayPageNumber * chartsOnePageShow + index)}}
+                                key={'chart-create' + index}
                         >
-                            <div className='chart-create-text' key={'chart-create-text' + targetIndex}>
+                            <div className='chart-create-text'>
                                 新規作成
                             </div>
-                            <div className='chart-create-plus' key={'chart-create-plus' + targetIndex}>
-                                <img src={chartplusImg} alt="add chart" />
+                            <div className='chart-create-plus'>
+                                <img 
+                                    src={chartplusImg} 
+                                    alt="add chart" 
+                                    onClick={() => setCurrentDisplayPageNumber((prev) => { return prev - 1})}
+                                    />
                             </div>
                         </div>
                     );
                 } else if (chartItem.unvisible) {
                     // 透明なダミーチャートを表示
                     return (
-                        <div className='chart-card' style={{visibility: "hidden"}} key={'chart-card' + targetIndex}>
+                        <div className='chart-card' style={{visibility: "hidden"}} key={'chart-card' + index}>
                         </div>
                     );
                 } else {
@@ -121,22 +123,22 @@ const Tasks: React.FC = () => {
                     return (
                         <div className='chart-card'
                                 onClick={() => {navigate(`/tasks?task_class_name=${chartItem.task_group_name}`)}}
-                                key={'chart-card' + targetIndex}
+                                key={'chart-card' + index}
                         >
                             <div className='chart-card-tools'>
-                                <div className='chart-name' style={{backgroundColor: themeColor[chartItem.color]}} key={'chart-name' + targetIndex}>
-                                    <div className='chart-name-text' key={'chart-name-text' + targetIndex}>
+                                <div className='chart-name' style={{backgroundColor: themeColor[chartItem.color]}} key={'chart-name' + index}>
+                                    <div className='chart-name-text'>
                                     {chartNameDisplay(chartItem.task_group_name)}
                                     </div>
                                 </div>
                                 <div className='chart-edit'
-                                        onClick={() => {handleClickChartEdit(currentDisplayPageNumber, currentDisplayPageNumber * chartsOnePageShow + targetIndex)}}
-                                        key={'chart-edit' + targetIndex}
+                                        onClick={() => {handleClickChartEdit(currentDisplayPageNumber, currentDisplayPageNumber * chartsOnePageShow + index)}}
+                                        key={'chart-edit' + index}
                                 >
                                         <img src={charteditImg} alt='edit chart' />
                                 </div>
                             </div>
-                            <div className='chart-content' key={'chart-content' + targetIndex}>
+                            <div className='chart-content' key={'chart-content' + index}>
                                 {chartItem.content}
                             </div>
                         </div>
@@ -237,16 +239,29 @@ export const ModalNewChart = ({
     
     // チャート新規作成：作成完了
     const handleClickChartCreateSubmit = (name: string) => {
-        setTaskData((prev) => {
-            return {
-                ...prev,
-                task_groups: [{
-                    task_group_name: name, // HACK: 同じ名前を登録してしまうと前のやつが上書きされてしまう
-                    color: currentColor,
-                    content: "",
-                    newChart: false,
-                    unvisible: false,
-                    tasks: []
+        setTaskData((prevState) => {
+            alert(JSON.stringify({ 
+                task_groups: [
+                    ...prevState.task_groups,
+                    {
+                        task_group_name: name, 
+                        color: currentColor,
+                        content: "",
+                        newChart: false,
+                        unvisible: false,
+                        tasks: []
+                }]
+            }))
+            return { 
+                task_groups: [
+                    ...prevState.task_groups,
+                    {
+                        task_group_name: name,
+                        color: currentColor,
+                        content: "",
+                        newChart: false,
+                        unvisible: false,
+                        tasks: []
                 }]
             }
         })

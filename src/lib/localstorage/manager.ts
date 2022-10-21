@@ -27,12 +27,16 @@ export class LocalStorageManager {
     data!: TaskGroups;
 
     constructor() {
-        const lsdata = JSON.parse(localStorage.getItem("data") || "{}");
-        console.log("load", lsdata);
+        let lsdata_str = localStorage.getItem("data") || "{}"
+        const lsdata = JSON.parse(lsdata_str);
         if (!Object.keys(lsdata).length) {
             this.init();
             this.save();
         } 
+        else {
+            this.data = lsdata as TaskGroups;
+            this.save();
+        }
     }
 
     private save(): void { // this.data -> localstorageにセーブ
@@ -43,7 +47,7 @@ export class LocalStorageManager {
         this.data = JSON.parse(localStorage.getItem("data") || "{}");
     }
 
-    private init(): void{ // ダミーデータを入れておく
+    private init(): void{ // 新規作成用データを入れておく
         this.data = {
             task_groups: [
                 {
