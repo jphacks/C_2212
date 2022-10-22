@@ -10,7 +10,7 @@ body {
     font-size: 15px;
     font-weight: 100;
     color: #ffb830;
-    margin: 0;
+    margin: 5px 0;
 }
   
 .page-title {
@@ -19,7 +19,7 @@ body {
     font-weight: 100;
     color: #ffb830;
     padding: 0 50px;
-    margin: 0;
+    margin: 10px 0;
 }
   
 /* チャート一覧関連 */

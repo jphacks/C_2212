@@ -1,51 +1,66 @@
 {
     "task_groups": [
         {
-            "task_group_name": "shakou 1",
+            "task_group_name": "数学テスト対策",
             "color": 0,
-            "content": "テスト1",
+            "content": "数学テスト対策のチャートの説明",
             "tasks": [
                 {
-                    "task_name": "学科１",
+                    "task_name": "FocusGold IAを買う",
                     "color": 0,
-                    "scheduled_date": "10/20",
-                    "deadline": "10/30"
+                    "scheduled_date": "2022/10/20 00:00:00",
+                    "deadline": "2022/10/21 23:59:59",
+                    "from": null,
+                    "to": 1
                 },
                 {
-                    "task_name": "車校①",
-                    "color": 0,
-                    "scheduled_date": "10/20"
+                    "task_name": "FocusGold IIIを買う",
+                    "color": 3,
+                    "scheduled_date": "2022/10/21 00:00:00",
+                    "deadline": "2022/10/21 00:00:00",
+                    "from": 1,
+                    "to": 2
                 },
                 {
-                    "task_name": "車校①",
-                    "color": 0,
-                    "scheduled_date": "10/20"
+                    "task_name": "知り合いに見せびらかす",
+                    "color": 2,
+                    "scheduled_date": "2022/10/22 00:00:00",
+                    "deadline": "2022/10/22 00:00:00",
+                    "from": 2,
+                    "to": null
                 }
             ]
         },
         {
-            "task_group_name": "shakou 2",
+            "task_group_name": "免許ゲット！",
             "color": 0,
-            "content": "テスト2",
+            "content": "",
             "tasks": [
                 {
-                    "task_name": "車校①",
-                    "color": 0,
-                    "scheduled_date": "10/20"
+                    "task_name": "車校に入学",
+                    "color": 1,
+                    "scheduled_date": "2022/11/1 00:00:00",
+                    "deadline": "2022/11/1 00:00:00",
+                    "from": null,
+                    "to": 1
                 },
                 {
-                    "task_name": "車校①",
-                    "color": 0,
-                    "scheduled_date": "10/20"
+                    "task_name": "仮免の試験",
+                    "color": 2,
+                    "scheduled_date": "2022/12/6 00:00:00",
+                    "deadline": "2022/12/6 00:00:00",
+                    "from": 1,
+                    "to": 2
                 },
                 {
-                    "task_name": "車校①",
-                    "color": 0,
-                    "scheduled_date": "10/20"
+                    "task_name": "免許合格の呑み会",
+                    "color": 2,
+                    "scheduled_date": "2022/12/12 00:00:00",
+                    "deadline": "2022/12/12 00:00:00",
+                    "from": 2,
+                    "to": null
                 }
             ]
-        },
-        {}
+        }
     ]
 }
-
