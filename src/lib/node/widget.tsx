@@ -12,7 +12,6 @@ import { TaskNodeModel } from "./model";
 import styled from '@emotion/styled';
 
 import "./node.css"
-import { localStorageManager } from "../localstorage/manager";
 
 
 export const Port = styled.div`
