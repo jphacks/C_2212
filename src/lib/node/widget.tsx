@@ -30,7 +30,7 @@ export class TaskNodeWidget extends React.Component<
 
 	render() {
 		return (
-			<div style={{ width: "15vw" }} className="task-node">
+			<div style={{ width: "20vw" , height: "25vh"}} className="task-node">
 				{this.props.node.getPort("in") && (
 				<AdvancedPortWidget
 					engine={this.props.engine}
@@ -40,7 +40,6 @@ export class TaskNodeWidget extends React.Component<
 					<div />
 				</AdvancedPortWidget>
 				)}
-
 				{this.props.node.getPort("out") && (
 				<AdvancedPortWidget
 					engine={this.props.engine}
@@ -51,17 +50,18 @@ export class TaskNodeWidget extends React.Component<
 				</AdvancedPortWidget>
 				)}
 				<div className="task-node-content has-text-light">
-					<p className="task-node-title">{this.props.node.name}</p>
-					<ul className="task-node-detail">
-						<li>
-							<b>予定日：</b>
-							<b>{this.props.node.scheduled_date}</b>
-						</li>
-						<li>
-							<b>締切：</b>
-							<b>{this.props.node.deadline}</b>
-						</li>
-					</ul>
+					<div className="pink_zone">
+						<h1 className="expected_date">{this.props.node.scheduled_date}</h1>
+						<h1 className="deadline">締切：<br/>
+							{/* {this.props.node.deadline} */}12/31
+						</h1>
+					</div>
+					<div className="white_zone">
+						<h1 className="task-node-title">{this.props.node.name}
+							<br/>	
+						<h2 className="task_detail">{/* {this.props.node.detail} */}この予定多分無理</h2>
+						</h1>
+					</div>
 				</div>
 			</div>
 		);
