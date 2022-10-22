@@ -1,5 +1,5 @@
 # JunSche
-demo: https://jphacks.github.io/C_2212/home
+demo: https://jphacks.github.io/C_2212/
 
 ![JunSche](https://user-images.githubusercontent.com/83483589/197318465-6abdd16f-013c-44b0-8696-48eada55c5fb.png)
 
