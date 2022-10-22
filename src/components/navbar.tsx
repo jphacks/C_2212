@@ -1,9 +1,12 @@
-// Navbar.js
-
-
+// React Hookをロード
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+// CSSをロード
 import "./navbar.css";
-import task_ls from "../lib/data/task_ls.json"
+
+// ローカルファイルをロード
+import { localStorageManager } from "../lib/localstorage/manager";
 
 const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
   return (
@@ -20,9 +23,17 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
 };
 
 const Navbar = () => {
+
+  const navigate = useNavigate();
+
+  if (!localStorageManager) {
+    console.warn("lsmanager is undefined")
+    return <></>
+  }
+  const TaskData = localStorageManager.getData();
   let tasks_name = [];
-  for(let i=0;i !== task_ls.tasks.length;i++){
-    tasks_name[i] = task_ls.tasks[i].name
+  for(let i=0;i < TaskData.task_groups.length;i++){
+    tasks_name[i] = TaskData.task_groups[i].task_group_name;
   }
   return (
     <nav className="navigation">
@@ -43,14 +54,13 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navigation-tasks">
-        <div onClick={() => {window.location.href = "/C_2212/todolist";}} className="navogation-task-title">Tasks</div>
+      <div className="navigation-tasks" style={{cursor: 'pointer'}}>
+        <div onClick={() => {navigate("/tasks");}} className="navogation-task-title">Tasks</div>
         <NavTaskList tasks={tasks_name} />
       </div>
     </nav>
   );
 }
-
 
 
 export default Navbar

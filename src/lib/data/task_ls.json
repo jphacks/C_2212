@@ -1,46 +1,66 @@
 {
-    "tasks": [
+    "task_groups": [
         {
-            "name": "車校①",
-            "color": "#ff2442",
-            "content": "テスト1",
-            "newFlag": false
+            "task_group_name": "数学テスト対策",
+            "color": 0,
+            "content": "数学テスト対策のチャートの説明",
+            "tasks": [
+                {
+                    "task_name": "FocusGold IAを買う",
+                    "color": 0,
+                    "scheduled_date": "2022/10/20 00:00:00",
+                    "deadline": "2022/10/21 23:59:59",
+                    "from": null,
+                    "to": 1
+                },
+                {
+                    "task_name": "FocusGold IIIを買う",
+                    "color": 3,
+                    "scheduled_date": "2022/10/21 00:00:00",
+                    "deadline": "2022/10/21 00:00:00",
+                    "from": 1,
+                    "to": 2
+                },
+                {
+                    "task_name": "知り合いに見せびらかす",
+                    "color": 2,
+                    "scheduled_date": "2022/10/22 00:00:00",
+                    "deadline": "2022/10/22 00:00:00",
+                    "from": 2,
+                    "to": null
+                }
+            ]
         },
         {
-            "name": "車校②",
-            "color": "#ffb01a",
-            "content": "あいあいあい",
-            "newFlag": false
-        },
-        {
-            "name": "テス勉",
-            "color": "#3db2ff",
-            "content": "コンテンツのテスト",
-            "newFlag": false
-        },
-        {
-            "name": "部活動",
+            "task_group_name": "免許ゲット！",
+            "color": 0,
             "content": "",
-            "color": "#ffb01a",
-            "newFlag": false
-        },
-        {
-            "name": "旅行",
-            "content": "",
-            "color": "#3db2ff",
-            "newFlag": false
-        },
-        {
-            "name": "旅行②",
-            "content": "",
-            "color": "#ff2442",
-            "newFlag": false
-        },
-        {
-            "name": "旅行③",
-            "content": "",
-            "color": "#ff2466",
-            "newFlag": false
+            "tasks": [
+                {
+                    "task_name": "車校に入学",
+                    "color": 1,
+                    "scheduled_date": "2022/11/1 00:00:00",
+                    "deadline": "2022/11/1 00:00:00",
+                    "from": null,
+                    "to": 1
+                },
+                {
+                    "task_name": "仮免の試験",
+                    "color": 2,
+                    "scheduled_date": "2022/12/6 00:00:00",
+                    "deadline": "2022/12/6 00:00:00",
+                    "from": 1,
+                    "to": 2
+                },
+                {
+                    "task_name": "免許合格の呑み会",
+                    "color": 2,
+                    "scheduled_date": "2022/12/12 00:00:00",
+                    "deadline": "2022/12/12 00:00:00",
+                    "from": 2,
+                    "to": null
+                }
+            ]
         }
     ]
 }

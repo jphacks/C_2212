@@ -1,3 +1,4 @@
+import React from "react";
 import createEngine, { DiagramModel } from '@projectstorm/react-diagrams';
 import { CanvasWidget } from '@projectstorm/react-canvas-core';
 
@@ -9,7 +10,7 @@ import { AdvancedLinkFactory } from '../lib/link/factory';
 import { AdvancedPortFactory } from '../lib/port/factory';
 
 
-const Diagram = () => {
+const Diagram = ({task_group_name}: {task_group_name: string}) => {
 	//1) setup the diagram engine
 	var engine = createEngine();
 	engine.getLinkFactories().registerFactory(new AdvancedLinkFactory());
@@ -97,7 +98,10 @@ const Diagram = () => {
 
 	// render the diagram!
 	return (
-		<CanvasWidget className="diagram-container" engine={engine} />
+		<>
+			<h2>{task_group_name}</h2>
+			<CanvasWidget className="diagram-container" engine={engine} />
+		</>
 	);
 };
 
