@@ -34,7 +34,7 @@
     "rm": "rm -rf docs",
     "mv": "mv build docs",
     "git": "git add . && git commit -m 'deploy' && git push origin master",
-    "deploy": "yarn run rm && yarn run build && yarn run mv && yran run git"
+    "deploy": "yarn run rm && yarn run build && yarn run mv && yarn run git"
   },
   "eslintConfig": {
     "extends": [
