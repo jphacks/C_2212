@@ -1,5 +1,5 @@
 # JunSche
-demo: https://jphacks.github.io/C_2212/
+demo: https://jphacks.github.io/C_2212/home
 
 ![JunSche](https://user-images.githubusercontent.com/83483589/197318465-6abdd16f-013c-44b0-8696-48eada55c5fb.png)
 
@@ -26,8 +26,8 @@ demo: https://jphacks.github.io/C_2212/
 フローチャート型で作ったタスク一覧をカレンダー型に変更する。
 
 ### 注力したこと（こだわり等）
-* 
-* 
+* わかりやすいUI
+* やさしい色合い、みんなが使いやすい！
 
 ## 開発技術
 ### 活用した技術
