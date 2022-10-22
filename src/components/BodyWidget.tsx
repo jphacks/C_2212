@@ -67,26 +67,28 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
 					<S.Bottun
 					draggable={true}
 					onDragStart={(event) => {
-					event.dataTransfer.setData('storm-diagram-node', JSON.stringify({type: 'in-out'}));
+					// event.dataTransfer.setData('storm-diagram-node', JSON.stringify({type: 'in-out'}));
 					}}
 					>
 					+
 					</S.Bottun>
 					<S.Layer
 						onDrop={(event) => {
-							let data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
+							// let data = JSON.parse(event.dataTransfer.getData('storm-diagram-node'));
 							// let nodesCount = _.keys(this.props.app.getDiagramEngine().getModel().getNodes()).length;
 
-							let node: TaskNodeModel | null = null;
-							if (data.type === 'in') {
-								node = new TaskNodeModel({task_group_name: "aaaa", name: "sample", scheduled_date: "10/21", deadline: "10/31"});
-								node.addPort(new AdvancedPortModel({in: true, name: 'in'}));
-								node.addPort(new AdvancedPortModel({in: false, name: 'out'}));
-							} else {
-								node = new TaskNodeModel({task_group_name: "aaaa", name: "sample", scheduled_date: "11/21", deadline: "11/31"});
-								node.addPort(new AdvancedPortModel({in: true, name: 'in'}));
-								node.addPort(new AdvancedPortModel({in: false, name: 'out'}));
-							}
+							let node: TaskNodeModel = new TaskNodeModel({task_group_name: "aaaa", name: "sample", scheduled_date: "10/21", deadline: "10/31"});
+							node.addPort(new AdvancedPortModel({in: true, name: 'in'}));
+							node.addPort(new AdvancedPortModel({in: false, name: 'out'}));
+							// if (data.type === 'in') {
+							// 	node = new TaskNodeModel({task_group_name: "aaaa", name: "sample", scheduled_date: "10/21", deadline: "10/31"});
+							// 	node.addPort(new AdvancedPortModel({in: true, name: 'in'}));
+							// 	node.addPort(new AdvancedPortModel({in: false, name: 'out'}));
+							// } else {
+							// 	node = new TaskNodeModel({task_group_name: "aaaa", name: "sample", scheduled_date: "11/21", deadline: "11/31"});
+							// 	node.addPort(new AdvancedPortModel({in: true, name: 'in'}));
+							// 	node.addPort(new AdvancedPortModel({in: false, name: 'out'}));
+							// }
 							let point = this.props.app.getDiagramEngine().getRelativeMousePoint(event);
 							node.setPosition(point);
 							this.props.app.getDiagramEngine().getModel().addNode(node);
