@@ -1,22 +1,22 @@
 import task_JSON from "../data/task_ls.json";
 
-export interface Task {
-    task_name: string;
-    color: number;
-    scheduled_date: string;
-    deadline: string;
-}
+// export interface Task {
+//     task_name: string;
+//     color: number;
+//     scheduled_date: string;
+//     deadline: string;
+// }
 
 
-export interface TaskGroup {
-    task_group_name: string;
-    color: number,
-    content: string,
-    tasks: []
-}
+// export interface TaskGroup {
+//     task_group_name: string;
+//     color: number,
+//     content: string,
+//     tasks: Task[];
+// }
 
 export interface TaskGroups {
-    task_groups: TaskGroup[];
+    task_groups: any[];
 }
 
 
