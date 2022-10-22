@@ -36,4 +36,4 @@ demo: https://jphacks.github.io/C_2212/
 ![JunSche (1)](https://user-images.githubusercontent.com/83483589/197318958-92d94f3d-cdd2-46e1-9e07-1af6bf24fa6c.png)
 
 - taskをグループごとに分けてみることができる機能（ReactもTypeScriptもわからないなかReact componentライブラリやtailwindを使わないで書きました）
-![JunSche (1)](https://user-images.githubusercontent.com/83483589/197318996-7ad6263a-f413-45ac-9884-63c972ee9776.png)
+![JunSche](https://user-images.githubusercontent.com/83483589/197318465-6abdd16f-013c-44b0-8696-48eada55c5fb.png)
