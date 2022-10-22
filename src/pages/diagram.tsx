@@ -119,7 +119,8 @@ import * as React from 'react';
 import { Application, BodyWidget } from '../components/BodyWidget';
 
 const Diagram = ({task_group_name}: {task_group_name: string}) => {
-	const app = new Application();
+	// console.log(task_group_name);
+	const app = new Application(task_group_name);
 	return <BodyWidget app={app} />;
 };
 

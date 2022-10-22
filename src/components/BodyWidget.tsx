@@ -13,6 +13,7 @@ import { TaskNodeFactory } from '../lib/node/factory';
 import { TaskNodeModel } from '../lib/node/model';
 import { AdvancedLinkModel } from '../lib/link/model';
 import { AdvancedPortModel } from '../lib/port/model';
+import { localStorageManager } from '../lib/localstorage/manager';
 
 
 export interface BodyWidgetProps {
@@ -78,11 +79,11 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
 
 							let node: TaskNodeModel | null = null;
 							if (data.type === 'in') {
-								node = new TaskNodeModel({name: "sample", scheduled_date: "10/21", deadline: "10/31"});
+								node = new TaskNodeModel({task_group_name: "aaaa", name: "sample", scheduled_date: "10/21", deadline: "10/31"});
 								node.addPort(new AdvancedPortModel({in: true, name: 'in'}));
 								node.addPort(new AdvancedPortModel({in: false, name: 'out'}));
 							} else {
-								node = new TaskNodeModel({name: "sample", scheduled_date: "11/21", deadline: "11/31"});
+								node = new TaskNodeModel({task_group_name: "aaaa", name: "sample", scheduled_date: "11/21", deadline: "11/31"});
 								node.addPort(new AdvancedPortModel({in: true, name: 'in'}));
 								node.addPort(new AdvancedPortModel({in: false, name: 'out'}));
 							}
@@ -107,42 +108,47 @@ export class BodyWidget extends React.Component<BodyWidgetProps> {
 export class Application {
 	protected activeModel!: SRD.DiagramModel;
 	protected diagramEngine: SRD.DiagramEngine;
+	protected task_group_name: string;
 
-	constructor() {
+	constructor(task_group_name: string) {
 		this.diagramEngine = SRD.default();
-		this.newModel();
-	}
-
-	public newModel() {
+		this.task_group_name = task_group_name;
 		this.diagramEngine.getLinkFactories().registerFactory(new AdvancedLinkFactory());
 		this.diagramEngine.getNodeFactories().registerFactory(new TaskNodeFactory());
 		this.diagramEngine.getPortFactories().registerFactory(new AdvancedPortFactory());
+		this.newModel();
+		// console.log(task_group_name + "1")
+		// console.log(this.task_group_name + "2")
+	}
 
-		const taskNode1 = new TaskNodeModel({ name: "顧客ヒアリング", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+	public newModel() {
+		
+		// 仮データ
+		const taskNode1 = new TaskNodeModel({ task_group_name: "aaaa", name: "顧客ヒアリング", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}`});
 		taskNode1.setPosition(200, 200);
-		const taskNode2 = new TaskNodeModel({ name: "プロトタイプ作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode2 = new TaskNodeModel({ task_group_name: "aaaa", name: "プロトタイプ作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode2.setPosition(500, 0);
-		const taskNode4 = new TaskNodeModel({ name: "要件定義書作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode4 = new TaskNodeModel({ task_group_name: "aaaa", name: "要件定義書作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode4.setPosition(500, 400);
-		const taskNode6 = new TaskNodeModel({ name: "契約書締結", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode6 = new TaskNodeModel({ task_group_name: "aaaa", name: "契約書締結", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode6.setPosition(800, 200);
 
-		const taskNode3 = new TaskNodeModel({ name: "画面遷移図作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode3 = new TaskNodeModel({ task_group_name: "aaaa", name: "画面遷移図作成", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode3.setPosition(1100, 0);
-		const taskNode5 = new TaskNodeModel({ name: "DB設計", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode5 = new TaskNodeModel({ task_group_name: "aaaa", name: "DB設計", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode5.setPosition(1100, 400);
-		const taskNode7 = new TaskNodeModel({ name: "API実装", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode7 = new TaskNodeModel({ task_group_name: "aaaa", name: "API実装", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode7.setPosition(1400, 400);
-		const taskNode8 = new TaskNodeModel({ name: "フロントエンド実装", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode8 = new TaskNodeModel({ task_group_name: "aaaa", name: "フロントエンド実装", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode8.setPosition(1400, 0);
 
-		const taskNode9 = new TaskNodeModel({ name: "結合テスト", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode9 = new TaskNodeModel({ task_group_name: "aaaa", name: "結合テスト", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode9.setPosition(1700, 200);
-		const taskNode10 = new TaskNodeModel({ name: "総合テスト", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode10 = new TaskNodeModel({ task_group_name: "aaaa", name: "総合テスト", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode10.setPosition(2000, 200);
-		const taskNode12 = new TaskNodeModel({ name: "納品", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode12 = new TaskNodeModel({ task_group_name: "aaaa", name: "納品", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode12.setPosition(2300, 200);
-		const taskNode11 = new TaskNodeModel({ name: "検収修正", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
+		const taskNode11 = new TaskNodeModel({ task_group_name: "aaaa", name: "検収修正", scheduled_date: `${new Date().getMonth() + 1}/${new Date().getDate()}` });
 		taskNode11.setPosition(2600, 200);
 
 		const link1 = new AdvancedLinkModel()
@@ -193,9 +199,24 @@ export class Application {
 		
 		this.activeModel = new SRD.DiagramModel();
 		this.diagramEngine.setModel(this.activeModel);
+
 		this.activeModel.addAll(taskNode1, taskNode2, taskNode3, taskNode4, taskNode5, taskNode6, taskNode7, taskNode8, taskNode9, taskNode10, taskNode11, taskNode12,
 		link1, link2, link3, link4, link5, link6, link7, link8, link9, link10, link11, link12, link13);
 
+		
+		// localstorage状のデータをcanvasに表示する
+		const data = localStorageManager.getData();
+		const task_group = data.task_groups.find(task_group => {
+			return task_group.task_group_name === this.task_group_name})
+		// 仮データがぞんざいするためslice(12)をはさんでいる
+		const taskNodes = task_group.tasks.slice(12).map((t: any) => this.diagramEngine.getNodeFactories().getFactory("advanced").generateModel(t))
+		const links = taskNodes.map((taskNode: any) => {
+			const to = taskNode.to;
+			if (to === "") return new AdvancedLinkModel();
+			return new AdvancedLinkModel().link(taskNode, to, taskNodes)
+		});
+		this.activeModel.addAll(...taskNodes, ...links);
+	
 	}
 
 	public getActiveDiagram(): SRD.DiagramModel {

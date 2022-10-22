@@ -12,6 +12,7 @@ import { TaskNodeModel } from "./model";
 import styled from '@emotion/styled';
 
 import "./node.css"
+import { localStorageManager } from "../localstorage/manager";
 
 
 export const Port = styled.div`
@@ -39,6 +40,9 @@ export class TaskNodeWidget extends React.Component<
 	constructor(props: TaskNodeWidgetProps) {
 		super(props);
 		this.state = {};
+		this.props.node.saveToLocalStorage();
+		// console.log(this.props.node);
+		// console.log(localStorageManager.getData());
 	}
 
 	render() {
