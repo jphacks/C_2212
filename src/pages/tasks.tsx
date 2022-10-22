@@ -18,9 +18,10 @@ import { useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 // コンポーネントをインポート
-import TagPaper from "../components/tagpaper";
+// import TagPaper from "../components/tagpaper";
 import Navbar from "../components/navbar";
 import Diagram from "./diagram";
+import TagPapers from "../components/tagpaper";
 
 const lsmanager = new LocalStorageManager()
 
@@ -108,7 +109,7 @@ const Tasks: React.FC = () => {
                             <img src={charteditImg} alt='edit chart' />
                     </div>
                 </div>
-                {<TagPaper chartItem={displayCharts[i]} />}
+                <TagPapers date={["10/22(Sat)", "10/26(Wed)"]} task_name={["Focus Gold IA", "Focus Gold IIB"]} color_number={[0, 1]} />
             </div>
         );
     }

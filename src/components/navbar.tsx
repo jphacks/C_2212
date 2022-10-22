@@ -42,11 +42,11 @@ const Navbar = () => {
       </Link>
       <div className="navigation-menu">
         <ul>
-          <li>
+          {/* <li>
             <Link to="/today-tasks">
               Today
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/calendar">
               Calendar
