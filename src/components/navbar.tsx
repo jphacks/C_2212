@@ -14,7 +14,7 @@ const NavTaskList = ({tasks}: {tasks: Array<string>}) => {
       {tasks.map((task) => {
         return (
           <li key={task} className="dropdown-list">
-            <Link style={{height: "100%"}} to={`/tasks?task_class_name=${task}`}>{task}</Link>
+            <Link style={{height: "100%"}} to={`?task_class_name=${task}`}>{task}</Link>
           </li>
         )
       })}
@@ -47,15 +47,15 @@ const Navbar = () => {
               Today
             </Link>
           </li> */}
-          <li>
+          {/* <li>
             <Link to="/calendar">
               Calendar
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
       <div className="navigation-tasks" style={{cursor: 'pointer'}}>
-        <div onClick={() => {navigate("/tasks");}} className="navogation-task-title">Tasks</div>
+        <div onClick={() => {navigate("/");}} className="navogation-task-title">Tasks</div>
         <NavTaskList tasks={tasks_name} />
       </div>
     </nav>
