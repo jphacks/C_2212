@@ -86,7 +86,7 @@ const Tasks: React.FC = () => {
     for (let i = 0; i < displayCharts.length; i++) {
         formerList.push(
             <div className='chart-card'
-                onClick={() => {navigate(`/tasks?task_class_name=${displayCharts[i].task_group_name}`)}}
+                onClick={() => {navigate(`?task_class_name=${displayCharts[i].task_group_name}`)}}
                 key={'chart-card' + i}
             >
                 <div className='chart-card-tools'>
