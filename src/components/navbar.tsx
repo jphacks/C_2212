@@ -37,7 +37,7 @@ const Navbar = () => {
   }
   return (
     <nav className="navigation">
-      <Link to="/" className="brand-name">
+      <Link to="/home" className="brand-name">
         JunSche
       </Link>
       <div className="navigation-menu">
